@@ -1,0 +1,41 @@
+PYTHON PROGRAM
+    Collect and prepare the data.
+    Use Python to extract, clean and store the data into a suitable format + provide clear evidence of how.
+
+    Carry out analytics on data and create at least two different basic visualisations (e.g., bar chart, line graph, pie chart) with each representing different key
+    aspects of the dataset.
+    Visualisation is clearly labelled with titles, axis labels, and legends.
+
+    Use Python data structure(s) such as lists, tuples or dictionaries to manage the data.
+
+    Develop a web-based interface to provide the public with information about chosen dataset. 
+    Display the data visualisations created in the information system.
+    Ensure users can interact with the data visualisation. (Hover to see details, click to filter data, change ranges).
+
+    Create a form or poll relating to your chosen dataset on your information system that collects and stores data from the users.
+
+
+WEBSITE
+
+Meeting the Brief
+    Record a video of the Python program, optional text. (< 1GB, < 5 mins).
+    Demonstrate how the application works and how it applies to the requirements.
+
+Investigation       ~400 words
+    Show evidence of own research, with existing solutions aligned with brief.
+    Include sites used to find information.
+
+Plan and Design     ~400 words
+    Clear description of the design and how it will meet the requirements in the brief. 
+    Explain each of the technologies planned to use and how they will be used within project.
+    Detailed flowchart giving overview of how system will work.
+
+Create              ~1000 words
+    Include the key milestones from each week.
+    Test table used to show evidence of testing and to explain the outcomes of the testing. 
+    Explain one of the problems encountered and describe how it was overcame.
+    Pseudocode of the algorithm (doesn't count to word count).
+
+Evaluation          ~300 words
+    Evaluate the final artefact in relation to the requirements set out in the brief.
+    Suggest, with justification, how artefact could be improved or iterated upon in the future.

@@ -28,10 +28,11 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - ⭕ A detailed flowchart
 
 ▶ Create *(max. 1000 words)*
-- Carry out testing during the development process
+- Include a progress log which gives an overview of the development process.
+- Carry out testing during the development process using a test table.
 - One of the problems that you encountered and describe how you overcame the problem.
 - Clearly explain the algorithm that you designed for the analytics part of your project.
-- Providing pseudocode of the algorithm and an explanation of the code
+- Providing pseudocode of the algorithm and an explanation of the code.
 
 ⭕ Evaluation *(max. 300 words)*
 - ⭕ Evaluate the final artefact in relation to the requirements set out in the brief.
@@ -42,14 +43,12 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 **Progress:** 0 / 6
 
-⭕ Collect and prepare data
-
-- Use Python to extract, clean and store the data that you will need for your project into a suitable format.
+✔️ Collect and prepare data
+- ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
 
 ⭕ Data analytics and visualisation 
 1. Use Python to carry out analytics on data and to create at least two different basic visualisations (e.g., bar chart, line graph, pie chart) with each representing different key aspects of the dataset.
 2.  Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
-
 3. Use Python data structure(s) such as lists, tuples or dictionaries to manage the data you will be analysing. 
 
 ⭕ Create a basic interactive information system interface

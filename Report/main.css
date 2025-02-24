@@ -48,13 +48,13 @@ td:nth-child(2) {
 }
 
 a:link {
-    color: #778bff;
+    color: #94adff;
     font-weight: 600;
     text-decoration: underline dotted;
 }
 
 a:visited {
-    color: #a077ff;
+    color: #c592ff;
 }
 
 .collapsible {

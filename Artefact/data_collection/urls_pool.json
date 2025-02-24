@@ -1,0 +1,20 @@
+{
+    "URLs": 
+    {
+        "EmploymentLevelsAndOccupations": 
+        {
+            "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/QES02/CSV/1.0/en",
+            "IncludedHeaders": [ "quarter", "detailed occupational group", "unit", "value" ]
+        },
+        "ConsumerPrices":
+        {
+            "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/CPM03/CSV/1.0/en",
+            "IncludedHeaders": [ "statistic label", "month", "selected sub indices", "unit", "value" ]
+        },
+        "HouseholdDisposableIncome":
+        {
+            "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/ISQ04/CSV/1.0/en",
+            "IncludedHeaders": [ "statistic label", "quarter", "unit", "value" ]
+        }
+    }
+}

@@ -25,7 +25,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - ✔️ Clear description of the design of your project
 - ✔️ Meeting basic and advanced requirements
 - ✔️ Technologies that you plan to use (Python, JS, VS Code)
-- A detailed flowchart
+- ⭕ A detailed flowchart
 
 ▶ Create *(max. 1000 words)*
 - Carry out testing during the development process
@@ -34,8 +34,8 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - Providing pseudocode of the algorithm and an explanation of the code
 
 ⭕ Evaluation *(max. 300 words)*
-- Evaluate the final artefact in relation to the requirements set out in the brief.
-- Suggest, with justification, how your artefact could be improved or iterated upon in the future.
+- ⭕ Evaluate the final artefact in relation to the requirements set out in the brief.
+- ⭕ Suggest, with justification, how your artefact could be improved or iterated upon in the future.
 
 
 ### Artefact

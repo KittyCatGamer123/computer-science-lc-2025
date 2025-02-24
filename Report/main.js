@@ -3,8 +3,13 @@
     Does not return anything.
 */
 function Initialise() {
+    GetWordCounts();
     WordCountSum();
     CreateCollapsibles();
+}
+
+function GetWordCounts() {
+    
 }
 
 /*

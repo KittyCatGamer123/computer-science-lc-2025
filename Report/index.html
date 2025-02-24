@@ -14,23 +14,101 @@
     </div>
 
     <div id="Section_MeetingBrief">
-        <h2>Meeting the Brief</h2>
-        <p></p>
+        <h2>📽 Meeting the Brief</h2>
     </div>
     <div id="Section_Investigation">
-        <h2>Investigation</h2>
+        <h2>🔍 Investigation</h2>
+        <p class="SectionContent">
+            From researching different databases I could use for visualising data on the data.cso.ie<br/>
+            website, I came to the decision to focus on data surrounding employment and how other<br/> 
+            datasets are affected by the fluctuation of employment levels in the Irish economy.<br/>
+            <br/>
+            As we all know, COVID-19 took a large hit on the employment rates in Ireland. As shown on<br/> 
+            most statistics websites, just like <a href="https://www.statista.com/statistics/1360519/employment-rate-ireland/">Statistia</a>, we can see a large drop in employment rates as<br/>
+            workers were unable to physically attend their workplaces at this time. For instance, the<br/>
+            hospitality, tourism, retail and food service sectors experienced substantial job losses<br/>
+            because their operations rely heavily on in-person interactions.<br/>
+            <br/>
+            According to the <a href="https://www.hiringlab.org/wp-content/uploads/2022/11/Indeed-Glassdoor-Workplace-Trends-Report-.pdf">“Indeed & Glassdoor Hiring and Workplace Trends Report”</a> for 2023,<br/>
+            it states that:<br/>
+            <span style="margin-left:50px">“COVID didn't reverse the long-run demographic trends that will drive tight labor<br/></span>
+            <span style="margin-left:50px">markets for the next decade, but it did accelerate changes to the workplace.”</span><br/>
+            <br/>
+            Granted, this report is in the global scope of employment and not specifically for Ireland, but<br/>
+            it did intrigue me as to how exactly we are coping with the after-effects of COVID almost half<br/>
+            a decade later.<br/>
+            <br/>
+            Additionally, LinkedIn's <a href="https://www.linkedin.com/pulse/linkedin-jobs-rise-2025-15-fastest-growing-roles-0q7kc">“Jobs on the Rise 2025 in Ireland for 2025”</a> concludes that the majority of<br/>
+            growing jobs currently seem to be physical jobs, such as being a Bus Driver, or Facilities<br/>
+            Manager, contrary to a likely belief that it would be jobs that you'd work from home at.<br/>
+            <br/>
+            With all of this information I've gained, I felt it was worthwhile to at least display the<br/>
+            fluctuation of employment over the years to show to people visually how the employment<br/>
+            levels are performing, and an opinion on whether the government could or should invest in it<br/>
+            can be made by each person individually after seeing such.<br/>
+            <br/>
+            Being able to visualise data is important, so I found, based on the visualisations from CSO<br/>
+            and the software <a href="https://www.tableau.com/">Tableau</a>, that being able to have data be comprehensible in a simple<br/>
+            format is always preferable for the end-user. Tableau was able to provide multiple<br/>
+            visualisations on the one dashboard, yet still be formatted in such a way that each element<br/>
+            is connected in an understandable manner. I'll be taking inspiration from this layout when I<br/>
+            create my interface.<br/>
+        </p>
     </div>
     <div id="Section_PlanDesign">
-        <h2>Plan and Design</h2>
+        <h2>📐 Plan and Design</h2>
+        <p class="SectionContent">
+            The project will be an employment analysis system that collects and visualises employment<br/>
+            trends in Ireland, where users will be able to select and filter through data (like by years or<br/>
+            gender) to view employment trends. The “dashboard” containing the various graph types<br/>
+            that will be created will have data that is <b>cross-referenced together</b>, essentially, comparing<br/>
+            employment rates in relation to homelessness rates, to salary rates, hours worked, etc.<br/>
+            The use of cross-referencing data is the method I plan to use in order to visualise how<br/>
+            employment is interlinked with other elements of Irish society and economy.<br/>
+            <br/>
+            In order to meet the basic requirements of my project, I plan to use <b>Python</b> to sterilise the<br/>
+            data that I will download from the data.cso.ie website as outlined in the brief, and store it in a<br/>
+            subfolder so it isn't conflicted with the other source files. To visually display data, I wish to<br/>
+            use well-documented libraries such as “<b>matplotlib</b>” in order to create the necessary graphs<br/>
+            that fit.  The graphs and information must be encapsulated within a web-based interface,<br/>
+            using <b>JavaScript</b>.<br/>
+            <br/>
+            That being said, web-based content don't directly mix with Python, so in order for the user to<br/>
+            directly interact with the graphs and data in real time, and I will be learning how to utilise theL<br/>
+            <a href="https://flask.palletsprojects.com/en/stable/">Flask</a> library in which I can create an API between the interface and the backend content<br/>
+            generated by Python. I also will be able to use the <b>Live Server</b> extension onto <b>Visual<br/>
+            Studio Code</b> to watch the webpage update in real time for faster debugging. As a means to<br/>
+            create a poll for users, the responses will be stored within an CSV file inside the artefact<br/>
+            folder which is sent through the same API. 
+        </p>
     </div>
     <div id="Section_Create">
-        <h2>Create</h2>
+        <h2>🖊 Create</h2>
     </div>
     <div id="Section_Eval">
-        <h2>Evaluation</h2>
+        <h2>🕵 Evaluation</h2>
     </div>
     <div id="Section_Refs">
-        <h2>References</h2>
+        <h2>🔗 References</h2>
+        <ul>
+            <h3>Research Resources</h3>
+            <li>
+                <span style="padding-right: 110px;">Statista</span>
+                <a href="https://www.statista.com/statistics/1360519/employment-rate-ireland/">Employment rate of the Republic of Ireland from 1st quarter 1998 to 3rd quarter 2024</a>
+            </li>
+            <li>
+                <span style="padding-right: 20px;">Indeed & Glassdoor</span>
+                <a href="https://www.hiringlab.org/wp-content/uploads/2022/11/Indeed-Glassdoor-Workplace-Trends-Report-.pdf">Hiring and Workplace Trends Report 2023</a>
+            </li>
+            <li>
+                <span style="padding-right: 100px;">LinkedIn</span>
+                <a href="https://www.linkedin.com/pulse/linkedin-jobs-rise-2025-15-fastest-growing-roles-0q7kc">LinkedIn Jobs on the Rise 2025: The 15 fastest-growing roles in Ireland</a>
+            </li>
+            <li>
+                <span style="padding-right: 105px;">Tableau</span>
+                <a href="https://www.tableau.com/">Business Intelligence and Analytics Software (Interface Inspiration)</a>
+            </li>
+        </ul>
         <ul>
             <h3>Tools Used for Project</h3>
             <li><a href="https://code.visualstudio.com/">Visual Studio Code</a> -- IDE used to create the Artefact and website.</li>
@@ -56,8 +134,12 @@
             <td>0</td>
         </tr>
         <tr>
+            <td>Investigation</td>
+            <td>370</td>
+        </tr>
+        <tr>
             <td>Plan and Design</td>
-            <td>0</td>
+            <td>291</td>
         </tr>
         <tr>
             <td>Create</td>

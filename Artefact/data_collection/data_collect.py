@@ -1,8 +1,16 @@
 import csv
 import io
-import os
 import requests
 import json
+
+# Get the parent directory (Project)
+# Add the parent directory to sys.path
+import sys, os
+
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(parent_dir)
+
+import utils
 
 # Make a HTTP Request with a URL.
 # url: The URL to make a request to (string)
@@ -57,18 +65,6 @@ def get_csv_dict(url_pool_data: dict) -> dict:
     raw_data = make_request(url_pool_data["URLs"])
     return format_csv(raw_data, url_pool_data["IncludedHeaders"])
 
-def get_json_file(filename: str) -> dict:
-    if os.path.exists(filename):
-        try:
-            return json.loads(open(filename, "r").read())
-        
-        except json.JSONDecodeError as e:
-            print("Invalid JSON syntax:", e)
-            exit()
-    else:
-        print(f"JSON file '{filename}' could not be found")
-        exit()
-
 
 UNIT_CONVERSION_RATE = {
     "Number": 1,
@@ -94,7 +90,7 @@ MONTH_TO_YEAR_QUARTER = {
 if __name__ == "__main__":
     # urls_pool.json is a hardcoded JSON file that contains the urls to for data to be analysed,
     # including its URL and the headers to include.
-    URLS_LIST = get_json_file("urls_pool.json")["URLs"]
+    URLS_LIST = utils.read_json("data_collection/urls_pool.json")["URLs"]
     
     # The Output variable is what will be written to the JSON file that we are going to use
     # for showing the data visually, after the final touch-up to data is applied.
@@ -123,6 +119,7 @@ if __name__ == "__main__":
         
         Output["EmploymentLevelsAndOccupations"].append({
             "Title": job_title[job_title.index(" ")+1:],
+            "Index": job_title[:job_title.index(" ")],
             "Year": int(year),
             "Quarter": int(quarter),
             "Unit": unit,
@@ -186,4 +183,4 @@ if __name__ == "__main__":
         })
     
     ### Write Output to a valid JSON file
-    open("../compiled_data.json", "w").write(json.dumps(Output))
+    utils.write_json("compiled_data.json", Output)

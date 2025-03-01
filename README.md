@@ -41,14 +41,14 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Artefact
 
-**Progress:** 0 / 6
+**Progress:** 1 / 6
 
 ✔️ Collect and prepare data
 - ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
 
 ⭕ Data analytics and visualisation 
 1. Use Python to carry out analytics on data and to create at least two different basic visualisations (e.g., bar chart, line graph, pie chart) with each representing different key aspects of the dataset.
-2.  Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
+2. Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
 3. Use Python data structure(s) such as lists, tuples or dictionaries to manage the data you will be analysing. 
 
 ⭕ Create a basic interactive information system interface

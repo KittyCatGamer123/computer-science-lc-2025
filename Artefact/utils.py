@@ -33,3 +33,8 @@ def write_json(filename: str, data_str: str) -> None:
 
 def search_dict(data: dict, key: str, value: str) -> list[dict]:
     return list(filter(lambda x: x[key] == value, data))
+
+def split_by_capitals(input: str) -> str:
+    capitals_range = range(ord('A'), ord('Z')+1)
+    mapfunc = map(lambda x: " " + x if ord(x) in capitals_range else x, input)
+    return "".join(mapfunc).strip()

@@ -11,10 +11,10 @@
             "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/CPM03/CSV/1.0/en",
             "IncludedHeaders": [ "statistic label", "month", "selected sub indices", "unit", "value" ]
         },
-        "HouseholdDisposableIncome":
+        "AvgEarningsHoursEmployment":
         {
-            "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/ISQ04/CSV/1.0/en",
-            "IncludedHeaders": [ "statistic label", "quarter", "unit", "value" ]
+            "URLs": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/EHQ03/CSV/1.0/en",
+            "IncludedHeaders": [ "statistic label", "quarter", "economic sector nace rev 2", "type of employee", "unit", "value" ]
         }
     }
 }

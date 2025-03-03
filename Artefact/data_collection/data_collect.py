@@ -68,6 +68,8 @@ def get_csv_dict(url_pool_data: dict) -> dict:
 
 UNIT_CONVERSION_RATE = {
     "Number": 1,
+    "Euro": 1,
+    "Hour": 1,
     "Thousand": 1000,
     "Euro Million": 1e+6
 }
@@ -95,15 +97,13 @@ if __name__ == "__main__":
     # The Output variable is what will be written to the JSON file that we are going to use
     # for showing the data visually, after the final touch-up to data is applied.
     Output = {
+        "Employment": [],
+        "AvgWeeklyEarnings": [],
+        "AvgHourlyEarnings": [],
+        "BenefitInKind": [],
         "EmploymentLevelsAndOccupations": [],
         "ConsumerPriceGoods": [],
-        "ConsumerPriceMortgageInterest": [],
-        "CommunalEstablishments": [],
-        "HouseholdDisposableIncome": {
-            "EuroMillion": [],
-            "SeasonallyAdjusted": [],
-            "ConstPriceSeasonallyAdjusted": []
-        }
+        "ConsumerPriceMortgageInterest": []
     }
     
     ### Employment Occupations
@@ -150,37 +150,35 @@ if __name__ == "__main__":
             "Quarter": int(quarter),
             "Value": float("{:.2f}".format(float(value) * UNIT_CONVERSION_RATE[unit]))
         })
-        
-    ### Household Disposable Income
-    HouseholdDisposableIncome = get_csv_dict(URLS_LIST["HouseholdDisposableIncome"])
     
-    for index in range(0, len(HouseholdDisposableIncome["VALUE"])):
-        income_title: str = HouseholdDisposableIncome["Statistic Label"][index]
-        
-        if "Household total disposable Income" not in income_title:
+    AvgEarningsHoursEmployment = get_csv_dict(URLS_LIST['AvgEarningsHoursEmployment'])
+    EmploymentStatsLabel: dict[str, str] = {
+        "Employment": "Employment",
+        "Average Weekly Earnings": "AvgWeeklyEarnings",
+        "Average Hourly Earnings": "AvgHourlyEarnings",
+        "Average Hourly Benefit in Kind": "BenefitInKind"
+    }
+    
+    for index in range(0, len(AvgEarningsHoursEmployment["Quarter"])):
+        stat_label: str = AvgEarningsHoursEmployment["Statistic Label"][index]
+        if stat_label not in EmploymentStatsLabel.keys():
             continue
         
-        income_title = income_title.replace("Household total disposable Income (TDI = B.6G+D.8)", "")
-        output_key = ""
+        output_key = EmploymentStatsLabel[stat_label]
+        year, quarter = AvgEarningsHoursEmployment["Quarter"][index].split("Q")
         
-        if income_title == "": 
-            output_key = "EuroMillion"
-        elif income_title == "(Seasonally Adjusted)": 
-            output_key = "SeasonallyAdjusted"
-        elif income_title == "(Constant Price Seasonally Adjusted)":
-            output_key = "ConstPriceSeasonallyAdjusted"
-        else:
-            print(f"Unfamiliar title {income_title}")
-            exit()
+        value = AvgEarningsHoursEmployment["VALUE"][index]
+        unit = AvgEarningsHoursEmployment["UNIT"][index]
+        if value == '': value = 0
         
-        year, quarter = EmploymentLevelsAndOccupations["Quarter"][index].split("Q")
-        value = HouseholdDisposableIncome["VALUE"][index]
         
-        Output["HouseholdDisposableIncome"][output_key].append({
+        Output[output_key].append({
+            "Sector": AvgEarningsHoursEmployment["Economic Sector NACE Rev 2"][index],
+            "Type": AvgEarningsHoursEmployment["Type of Employee"][index],
             "Year": int(year),
             "Quarter": int(quarter),
             "Value": float("{:.2f}".format(float(value) * UNIT_CONVERSION_RATE[unit]))
         })
-    
+        
     ### Write Output to a valid JSON file
     utils.write_json("compiled_data.json", Output)

@@ -2,7 +2,7 @@ import os
 import json
 
 def read_json(filename: str) -> dict:
-    filename = f"./Artefact/{filename}"
+    filename = f"{os.path.dirname(os.path.abspath(__file__))}/{filename}"
 
     if os.path.exists(filename):
         try:
@@ -16,7 +16,7 @@ def read_json(filename: str) -> dict:
         exit()
 
 def write_json(filename: str, data_str: str) -> None:
-    filename = f"./Artefact/{filename}"
+    filename = f"{os.path.dirname(os.path.abspath(__file__))}/{filename}"
 
     if os.path.exists(filename):
         try:

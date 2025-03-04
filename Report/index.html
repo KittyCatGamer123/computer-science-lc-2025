@@ -169,6 +169,58 @@
             </tr>
         </table>
         <p>Conclusion - This function will need to be adjusted to handle invalid type inputs.</p>
+
+        <h4>Week Four</h4>
+        <p><b>Interface Assembly</b></p>
+        <ul class="createSection">
+            <li>Began researching how to use the "Flask" module in Python to supply frontend and backend for the interface of the Artefact.</li>
+            <li>Modified the "visualiser.py" script in order to return the visualisations in bytes formats. This allows the Flask app to turn it into an image to be displayed on the interface.</li>
+            <li>Change pathing in reading and writing the "compiled_data.json" functions so it will execute regardless of calling location.</li>
+            <li>Created a frontend which can now make requests to a Flask-built API in which builds an image from a graph and returns it.</li>
+        </ul>
+
+        <table class="testingTable">
+            <tr>
+                <th>Action</th>
+                <th>Input</th>
+                <th>Expected Output</th>
+                <th>Actual Output</th>
+                <th>Test Result</th>
+                <th>Comments</th>
+            </tr>
+            <tr>
+                <td>Testing the "/api/graph_occupations" integrity with different parameter inputs</td>
+                <td>An integer in the form of a year.</td>
+                <td></td>
+                <td></td>
+                <td><span style="color:rgb(93, 219, 93)">Pass</span> or <span style="color:rgb(219, 93, 162)">Fail</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>2017</td>
+                <td>Visualisation for the year 2017.</td>
+                <td>A pie chart supplied with data for the year 2017.</td>
+                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
+                <td>Works as anticipated, unsurprisingly since it is the perfect input fit for this function.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>2025</td>
+                <td>Response 400 (Bad Request)</td>
+                <td>Bad Request from server.</td>
+                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
+                <td>Years outside the data range will return 'None' from the visualiser.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>-55.6</td>
+                <td>Response 400 (Bad Request)</td>
+                <td>Bad Request from server.</td>
+                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
+                <td>After first testing mentioned above, visualiser now handles invalid number inputs and returns 'None', so now the API responds with a 400.</td>
+            </tr>
+        </table>
     </div>
     <div id="Section_Eval">
         <h2>🕵 Evaluation</h2>
@@ -240,6 +292,26 @@
                     <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xticks.html">How to show only some xticks</a>
                     <span style="padding-left: 223px;">Matplotlib documentation</span>
                 </li>
+                <li>
+                    <a href="https://www.geeksforgeeks.org/saving-a-plot-as-an-image-in-python/">Saving a Plot as an Image in Python</a>
+                    <span style="padding-left: 223px;">Matplotlib documentation</span>
+                </li>
+                <li>
+                    <a href="https://blog.teclado.com/query-string-arguments-in-flask-rest-apis/">Get API arguments in Flask</a>
+                    <span style="padding-left: 223px;">teclado</span>
+                </li>
+                <li>
+                    <a href="https://flask.palletsprojects.com/en/stable/api/#flask.abort">Flask Abort function</a>
+                    <span style="padding-left: 223px;">Flask documentation</span>
+                </li>
+                <li>
+                    <a href="https://tedboy.github.io/flask/generated/flask.send_file.html">Flask Send File function</a>
+                    <span style="padding-left: 223px;">tedboy.github.io</span>
+                </li>
+                <li>
+                    <a href="https://stackoverflow.com/questions/69924881/userwarning-starting-a-matplotlib-gui-outside-of-the-main-thread-will-likely-fa">Using Matplotlib in non-GUI format</a>
+                    <span style="padding-left: 223px;">Stack Overflow</span>
+                </li>
             </ul>
         </div>
     </div>
@@ -264,7 +336,7 @@
         </tr>
         <tr>
             <td>Create</td>
-            <td id="CreateSectionSum">0</td>
+            <td>582</td>
         </tr>
         <tr>
             <td>Revalution</td>

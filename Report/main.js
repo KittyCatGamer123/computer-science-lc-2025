@@ -3,24 +3,8 @@
     Does not return anything.
 */
 function Initialise() {
-    GetWordCounts();
     WordCountSum();
     CreateCollapsibles();
-}
-
-function GetWordCounts() {
-    let result = 0;
-
-    for (let element of document.getElementsByClassName("createSection")) {
-        element.textContent.split("\n").forEach(n => {
-            let nClean = n.trim()
-            if (nClean == "") return;
-
-            result += nClean.split(" ").length;
-        })
-    }
-
-    document.getElementById("CreateSectionSum").textContent = result.toString();
 }
 
 /*

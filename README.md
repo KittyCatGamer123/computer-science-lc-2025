@@ -29,7 +29,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ▶ Create *(max. 1000 words)*
 - ▶ Include a progress log which gives an overview of the development process.
-- ⭕ Carry out testing during the development process using a test table.
+- ✔️ Carry out testing during the development process using a test table.
 - ⭕ One of the problems that you encountered and describe how you overcame the problem.
 - ⭕ Clearly explain the algorithm that you designed for the analytics part of your project.
 - ⭕ Providing pseudocode of the algorithm and an explanation of the code.

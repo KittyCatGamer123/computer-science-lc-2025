@@ -1,4 +1,8 @@
+import matplotlib
 import matplotlib.pyplot as plt
+
+
+matplotlib.use('agg')
 
 # Get the parent directory (Project)
 # Add the parent directory to sys.path
@@ -15,7 +19,7 @@ DATA = utils.read_json("compiled_data.json")
 # Graphs the Consumer Prices from the compiled_data.json
 # Creates line graph
 
-def graph_consumer_prices() -> None:
+def graph_consumer_prices() -> plt.Figure:
     data_key_list = ["ConsumerPriceMortgageInterest", "ConsumerPriceGoods"]
     key_list_len = len(data_key_list)
 
@@ -39,16 +43,16 @@ def graph_consumer_prices() -> None:
 
         plt.xticks(ticks_indicies, ticks_labels)
         plt.plot(x_axis, y_axis)
-
-    plt.show()
+        
+    return plt.gcf()
 
 # Graphs the Occupations from the compiled_data.json
 # Creates pie chart
 
-def graph_occupations(year: int) -> None:
+def graph_occupations(year: int) -> plt.Figure:
     if (type(year) != int):
         print(f"Invalid type for year {year}; Please use integers only.")
-        return
+        return None
     
     occupation_data: list[dict] = DATA["EmploymentLevelsAndOccupations"]
     occupations_for_year: list[dict] = utils.search_dict(
@@ -56,7 +60,7 @@ def graph_occupations(year: int) -> None:
 
     if (occupations_for_year == []):
         print("No data available for year", year)
-        return
+        return None
 
     labels: list[str] = []
     values: list[str] = []
@@ -69,7 +73,9 @@ def graph_occupations(year: int) -> None:
     fig, ax = plt.subplots()
     ax.pie(values, labels=labels)
     plt.title(f"Employment Levels and Occupations for Year {year}")
-    plt.show()
+    fig.set_size_inches(9, 4)
+    
+    return plt.gcf()
 
 # Creates a line graph of Employment of a job over time
 # Sector: The Sector object to search for in compiled data
@@ -103,7 +109,8 @@ def graph_employment_trend(sector: str) -> None:
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
     plt.title(f"Employment Trend for {sector}")
-    plt.show()
+    
+    return plt.gcf()
 
 # Creates a line graph of Weekly Earnings of a job over time
 # Sector: The Sector object to search for in compiled data
@@ -137,7 +144,8 @@ def graph_weekly_earnings_trend(sector: str) -> None:
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
     plt.title(f"Average Weekly Earnings for {sector}")
-    plt.show()
+    
+    return plt.gcf()
     
 ### Unit Testing
 # graph_occupations(2015)   => Visualisation success

@@ -46,6 +46,10 @@ def graph_consumer_prices() -> None:
 # Creates pie chart
 
 def graph_occupations(year: int) -> None:
+    if (type(year) != int):
+        print(f"Invalid type for year {year}; Please use integers only.")
+        return
+    
     occupation_data: list[dict] = DATA["EmploymentLevelsAndOccupations"]
     occupations_for_year: list[dict] = utils.search_dict(
         occupation_data, "Year", year)
@@ -71,6 +75,10 @@ def graph_occupations(year: int) -> None:
 # Sector: The Sector object to search for in compiled data
 
 def graph_employment_trend(sector: str) -> None:
+    if (type(sector) != str):
+        print(f"Invalid type for sector {sector}; Please use strings only.")
+        return
+    
     job_data = utils.search_dict(DATA["Employment"], "Sector", sector)
     all_employees_job_data = utils.search_dict(
         job_data, "Type", "All employees")
@@ -101,6 +109,10 @@ def graph_employment_trend(sector: str) -> None:
 # Sector: The Sector object to search for in compiled data
 
 def graph_weekly_earnings_trend(sector: str) -> None:
+    if (type(sector) != str):
+        print(f"Invalid type for sector {sector}; Please use strings only.")
+        return
+    
     job_data = utils.search_dict(DATA["AvgWeeklyEarnings"], "Sector", sector)
     all_employees_job_data = utils.search_dict(
         job_data, "Type", "All employees")
@@ -126,3 +138,9 @@ def graph_weekly_earnings_trend(sector: str) -> None:
     plt.plot(labels, values)
     plt.title(f"Average Weekly Earnings for {sector}")
     plt.show()
+    
+### Unit Testing
+# graph_occupations(2015)   => Visualisation success
+# graph_occupations("2014") => "No data available" despite being int param??
+# graph_occupations(-2.5)   => Same as above
+# graph_occupations([2015]) => Same as above

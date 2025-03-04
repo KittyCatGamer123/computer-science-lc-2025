@@ -39,11 +39,24 @@ td {
     padding-right: 20px;
 }
 
-td:nth-child(1) {
+.testingTable, .testingTable td, .testingTable tr, .testingTable th  {
+    border: 1px solid #444;
+}
+
+.testingTable td, .testingTable tr, .testingTable th {
+    padding: 4px;
+}
+
+.testingTable td:nth-child(2),
+.testingTable td:nth-child(5) {
+    text-align: center;
+}
+
+.WordCounts td:nth-child(1) {
     text-align: left;
 }
 
-td:nth-child(2) {
+.WordCounts td:nth-child(2) {
     text-align: right;
 }
 

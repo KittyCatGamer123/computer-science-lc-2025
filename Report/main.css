@@ -92,10 +92,12 @@ a:visited {
 }
   
 .CollapsibleContent {
-    padding: 0 18px;
+    padding: 5px 18px;
+    margin: 5px 0;
     display: none;
     overflow: hidden;
-    background-color: #222;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
     width: fit-content;
 }
 

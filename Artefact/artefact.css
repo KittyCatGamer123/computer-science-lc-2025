@@ -1,0 +1,59 @@
+body {
+    background-color: #f5f5f5;
+    color: #222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#PageContainer {
+    margin: 30px;
+    width: auto;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
+}
+
+hr {
+    border-top: 1px solid #d4d4d4;
+}
+
+.PageContent {
+    margin: 5px 20px;
+}
+
+.PageContent h2 {
+    color: #10559d;
+}
+
+.GraphContainers {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px;
+}
+
+select.WeeklyEarningsSector {
+    max-height: 50px;
+}
+
+.Filterlike {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.GraphSettings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.YearDropdown {
+    width: 70px;
+    height: 30px;
+}
+
+p.Filterlike, input.Filterlike {
+    margin: 0px;
+    padding: 0px;
+}

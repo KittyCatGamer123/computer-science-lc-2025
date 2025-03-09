@@ -22,6 +22,8 @@ DATA = utils.read_json("compiled_data.json")
 def graph_consumer_prices() -> plt.Figure:
     data_key_list = ["ConsumerPriceMortgageInterest", "ConsumerPriceGoods"]
     key_list_len = len(data_key_list)
+    
+    plt.clf()
 
     for i, key in enumerate(data_key_list):
         plt.subplot(100 + (key_list_len * 10) + (i + 1))
@@ -64,6 +66,9 @@ def graph_occupations(year: int) -> plt.Figure:
 
     labels: list[str] = []
     values: list[str] = []
+    
+    plt.clf()
+    
     for index in range(1, 10):
         occupation: dict = utils.search_dict(
             occupations_for_year, "Index", str(index))[0]
@@ -96,6 +101,8 @@ def graph_employment_trend(sector: str) -> None:
     values = []
     ticks_indicies = []
     ticks_labels = []
+    
+    plt.clf()
 
     for index, job in enumerate(all_employees_job_data):
         year = job['Year']
@@ -115,24 +122,35 @@ def graph_employment_trend(sector: str) -> None:
 # Creates a line graph of Weekly Earnings of a job over time
 # Sector: The Sector object to search for in compiled data
 
-def graph_weekly_earnings_trend(sector: str) -> None:
+def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 9999) -> None:
+    year_min = int(year_min)
+    year_max = int(year_max)
+    
     if (type(sector) != str):
         print(f"Invalid type for sector {sector}; Please use strings only.")
-        return
+        return None
     
     job_data = utils.search_dict(DATA["AvgWeeklyEarnings"], "Sector", sector)
-    all_employees_job_data = utils.search_dict(
-        job_data, "Type", "All employees")
-
+    all_employees_job_data = utils.search_dict(job_data, "Type", "All employees")
+    
     if all_employees_job_data == []:
         print("Cannot find job", sector)
+        return None
+
+    job_data_filtered: list[dict] = []
+    
+    for job in all_employees_job_data:
+        if (job['Year'] >= year_min) and (job['Year'] <= year_max):
+            job_data_filtered.append(job)
 
     labels = []
     values = []
     ticks_indicies = []
     ticks_labels = []
+    
+    plt.clf()
 
-    for index, job in enumerate(all_employees_job_data):
+    for index, job in enumerate(job_data_filtered):
         year = job['Year']
         labels.append(f"{year}Q{job['Quarter']}")
         values.append(job['Value'])
@@ -141,9 +159,11 @@ def graph_weekly_earnings_trend(sector: str) -> None:
             ticks_indicies.append(index)
             ticks_labels.append(str(year))
 
+    fig, ax = plt.subplots()
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
     plt.title(f"Average Weekly Earnings for {sector}")
+    fig.set_size_inches(9, 4)
     
     return plt.gcf()
     

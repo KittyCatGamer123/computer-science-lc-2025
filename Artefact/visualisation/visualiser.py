@@ -2,7 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-matplotlib.use('agg')
+#matplotlib.use('agg')
 
 # Get the parent directory (Project)
 # Add the parent directory to sys.path
@@ -23,6 +23,7 @@ def graph_consumer_prices() -> plt.Figure:
     data_key_list = ["ConsumerPriceMortgageInterest", "ConsumerPriceGoods"]
     key_list_len = len(data_key_list)
     
+    fig, ax = plt.subplots()
     plt.clf()
 
     for i, key in enumerate(data_key_list):
@@ -67,8 +68,6 @@ def graph_occupations(year: int) -> plt.Figure:
     labels: list[str] = []
     values: list[str] = []
     
-    plt.clf()
-    
     for index in range(1, 10):
         occupation: dict = utils.search_dict(
             occupations_for_year, "Index", str(index))[0]
@@ -76,7 +75,9 @@ def graph_occupations(year: int) -> plt.Figure:
         values.append(occupation["Value"])
 
     fig, ax = plt.subplots()
+    plt.clf()
     ax.pie(values, labels=labels)
+
     plt.title(f"Employment Levels and Occupations for Year {year}")
     fig.set_size_inches(9, 4)
     
@@ -85,26 +86,36 @@ def graph_occupations(year: int) -> plt.Figure:
 # Creates a line graph of Employment of a job over time
 # Sector: The Sector object to search for in compiled data
 
-def graph_employment_trend(sector: str) -> None:
+def graph_employment_trend(sector: str, year_min: int = 0, year_max: int = 9999) -> None:
+    year_min = int(year_min)
+    year_max = int(year_max)
+    
     if (type(sector) != str):
         print(f"Invalid type for sector {sector}; Please use strings only.")
-        return
+        return None
     
     job_data = utils.search_dict(DATA["Employment"], "Sector", sector)
-    all_employees_job_data = utils.search_dict(
-        job_data, "Type", "All employees")
-
+    all_employees_job_data = utils.search_dict(job_data, "Type", "All employees")
+    
     if all_employees_job_data == []:
         print("Cannot find job", sector)
+        return None
+
+    job_data_filtered: list[dict] = []
+    
+    for job in all_employees_job_data:
+        if (job['Year'] >= year_min) and (job['Year'] <= year_max):
+            job_data_filtered.append(job)
 
     labels = []
     values = []
     ticks_indicies = []
     ticks_labels = []
     
+    fig, ax = plt.subplots()
     plt.clf()
 
-    for index, job in enumerate(all_employees_job_data):
+    for index, job in enumerate(job_data_filtered):
         year = job['Year']
         labels.append(f"{year}Q{job['Quarter']}")
         values.append(job['Value'])
@@ -115,14 +126,15 @@ def graph_employment_trend(sector: str) -> None:
 
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
-    plt.title(f"Employment Trend for {sector}")
+    plt.title(f"Employment Trend for\n{sector}")
     
     return plt.gcf()
+
 
 # Creates a line graph of Weekly Earnings of a job over time
 # Sector: The Sector object to search for in compiled data
 
-def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 9999) -> None:
+def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 9999):
     year_min = int(year_min)
     year_max = int(year_max)
     
@@ -148,6 +160,7 @@ def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 
     ticks_indicies = []
     ticks_labels = []
     
+    fig, ax = plt.subplots()
     plt.clf()
 
     for index, job in enumerate(job_data_filtered):
@@ -159,11 +172,9 @@ def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 
             ticks_indicies.append(index)
             ticks_labels.append(str(year))
 
-    fig, ax = plt.subplots()
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
-    plt.title(f"Average Weekly Earnings for {sector}")
-    fig.set_size_inches(9, 4)
+    plt.title(f"Average Weekly Earnings for\n{sector}")
     
     return plt.gcf()
     
@@ -172,3 +183,41 @@ def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 
 # graph_occupations("2014") => "No data available" despite being int param??
 # graph_occupations(-2.5)   => Same as above
 # graph_occupations([2015]) => Same as above
+
+
+## Returns bar graph of Gender rates in user_data.json
+def user_data_gender():
+    return user_data_freqbar("Gender", "Gender")
+
+## Returns bar graph of Age rates in user_data.json
+def user_data_age():
+    return user_data_freqbar("Age", "Age Groups")
+
+## Returns bar graph of Annual Income rates in user_data.json
+def user_data_payrange():
+    return user_data_freqbar("AnnualIncome", "Annual Income")
+
+## Takes in a key from a user_data dictionary and uses its frequencies to display a bar chart.
+def user_data_freqbar(key: str, name: str):
+    user_data: list[dict] = utils.read_json("user_form/user_data.json")
+    user_survey_options = utils.read_json("user_form/user_form_options.json")
+
+    labels = user_survey_options[key] # [Male, Female, ...]
+    item_frequency = {}                  # { Male: #, Female: #, ... }
+
+
+    for val in user_data:
+        item_key = val[key]
+        if item_key not in item_frequency:
+            item_frequency[item_key] = 0
+        
+        item_frequency[item_key] += 1
+
+    values = [item_frequency[x] for x in labels]
+    fig, ax = plt.subplots()
+    plt.clf()
+    
+    ax.bar(labels, values, width=1, edgecolor="white")
+    plt.title(name)
+
+    return plt.gcf()

@@ -1,36 +1,108 @@
+/* Employment Graph Variables */
+let EmploymentElement;
+let EmploymentSector;
+let EmploymentSectorToggle;
+let EmploymentMinYear;
+let EmploymentMaxYear;
+
+/* Weekly Earnings Graph Variables */
 let WeeklyEarningsElement;
 let WeeklyEarningsSector;
+let WeeklyEarningsSectorToggle;
 let WeeklyEarningsMinYear;
 let WeeklyEarningsMaxYear;
 
+/* User Survey Variables */
+let SurveyGender;
+let SurveyAge;
+let SurveySector;
+let SurveyCounty;
+let SurveyIncome;
+let SurveySatisfaction;
+
+/*
+    Runs all required functions for the page to run,
+    including finding elements and running other initalisers.
+    No returns.
+*/
 async function initialise() {
+    EmploymentElement = document.getElementById("EmployementLevels");
     WeeklyEarningsElement = document.getElementById("WeeklyEarnings");
 
-    await initialiseWeeklyEarningsDropdowns();
-    updateWeeklyEarningsDisplay();
+    /* 
+        Dropdowns must be initialised before displays are updated
+        so there are no race conditions, and there is data to
+        read from elements.
+    */
+    await initialiseDropdowns();
+    await updateEmploymentDisplay();
+    await updateWeeklyEarningsDisplay();
+    await initialiseUserData();
+    await initialiseFormData();
 }
 
-async function initialiseWeeklyEarningsDropdowns() {
+async function initialiseDropdowns() {
+    EmploymentSector = document.getElementById("EmploymentSector");
+    EmploymentSector.addEventListener("change", updateEmploymentDisplay);
+
     WeeklyEarningsSector = document.getElementById("WeeklyEarningsSector");
     WeeklyEarningsSector.addEventListener("change", updateWeeklyEarningsDisplay);
+
+    EmploymentMinYear = document.getElementById("EmploymentMinYear");
+    EmploymentMaxYear = document.getElementById("EmploymentMaxYear");
 
     WeeklyEarningsMinYear = document.getElementById("WeeklyEarningsMinYear");
     WeeklyEarningsMaxYear = document.getElementById("WeeklyEarningsMaxYear");
 
+    removeOptions(EmploymentSector);
     removeOptions(WeeklyEarningsSector);
-    let Sectors = await (await fetch("api/data_sectors?key=AvgWeeklyEarnings")).json(); 
-    Sectors.forEach(sector => {
-        let sectorOption = document.createElement("option");
-        sectorOption.value = sector;
-        sectorOption.textContent = sector;
-        WeeklyEarningsSector.appendChild(sectorOption);
-    })
 
+    await populateDropdown(WeeklyEarningsSector, "api/data_sectors?key=AvgWeeklyEarnings");
+    await populateDropdown(EmploymentSector, "api/data_sectors?key=Employment");
+
+    removeOptions(EmploymentMinYear);
+    removeOptions(EmploymentMaxYear);
     removeOptions(WeeklyEarningsMinYear);
     removeOptions(WeeklyEarningsMaxYear);
 
-    let Years = await (await fetch("api/data_years?key=AvgWeeklyEarnings")).json();
-    Years.forEach(year => {
+    let years = await fetchData("api/data_years?key=AvgWeeklyEarnings");
+    populateYearDropdowns(WeeklyEarningsMinYear, WeeklyEarningsMaxYear, years);
+
+    years = await fetchData("api/data_years?key=Employment");
+    populateYearDropdowns(EmploymentMinYear, EmploymentMaxYear, years);
+
+    WeeklyEarningsMinYear.addEventListener("change", updateWeeklyEarningsDisplay);
+    WeeklyEarningsMaxYear.addEventListener("change", updateWeeklyEarningsDisplay);
+    EmploymentMinYear.addEventListener("change", updateEmploymentDisplay);
+    EmploymentMaxYear.addEventListener("change", updateEmploymentDisplay);
+}
+
+async function fetchData(url) {
+    let response = await fetch(url);
+    return await response.json();
+}
+
+async function populateDropdown(element, url) {
+    let data = await fetchData(url);
+    data.forEach(item => {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        element.appendChild(option);
+    });
+}
+
+/*
+    Populates two dropdown elements with year options.
+
+    minYearElement - The dropdown element for the minimum year.
+    maxYearElement - The dropdown element for the maximum year.
+    years - An array of years to populate the dropdowns with.
+
+    No returns.
+*/
+function populateYearDropdowns(minYearElement, maxYearElement, years) {
+    years.forEach(year => {
         let minYearOption = document.createElement("option");
         let maxYearOption = document.createElement("option");
 
@@ -39,35 +111,51 @@ async function initialiseWeeklyEarningsDropdowns() {
         maxYearOption.value = year;
         maxYearOption.textContent = year;
 
-        WeeklyEarningsMinYear.appendChild(minYearOption);
-        WeeklyEarningsMaxYear.appendChild(maxYearOption);
+        minYearElement.appendChild(minYearOption);
+        maxYearElement.appendChild(maxYearOption);
     });
 
-    WeeklyEarningsMinYear.value = Years[0];
-    WeeklyEarningsMaxYear.value = Years[Years.length - 1];
+    // Set the default selected values for the dropdowns
+    minYearElement.value = years[0];
+    maxYearElement.value = years[years.length - 1];
+}
 
-    WeeklyEarningsMinYear.addEventListener("change", updateWeeklyEarningsDisplay);
-    WeeklyEarningsMaxYear.addEventListener("change", updateWeeklyEarningsDisplay);
+/*
+    Updates the display element by setting its source based on the provided parameters and fetches data if necessary.
+
+    element - The HTML element whose source will be updated.
+    sectorElement - The input element containing the sector value.
+    minYearElement - The input element containing the minimum year value.
+    maxYearElement - The input element containing the maximum year value.
+    apiEndpoint - The API endpoint to fetch data from.
+    dataKey - The key used to fetch data years.
+    No returns.
+*/
+async function updateDisplay(element, sectorElement, minYearElement, maxYearElement, apiEndpoint, dataKey) {
+    let sector = sectorElement.value;
+    let minYear = minYearElement.value;
+    let maxYear = maxYearElement.value;
+
+    element.src = `api/${apiEndpoint}?sector=${sector}&min=${minYear}&max=${maxYear}`;
+
+    if (minYear > maxYear) {
+        let DataYears = await fetchData(`api/data_years?key=${dataKey}`);
+
+        if (maxYear - 1 < DataYears[0]) {
+            minYearElement.value = DataYears[0];
+        } else {
+            minYearElement.value = maxYear - 1;
+        }
+        updateDisplay(element, sectorElement, minYearElement, maxYearElement, apiEndpoint, dataKey);
+    }
+}
+
+async function updateEmploymentDisplay() {
+    await updateDisplay(EmploymentElement, EmploymentSector, EmploymentMinYear, EmploymentMaxYear, "graph_employment_trend", "Employment");
 }
 
 async function updateWeeklyEarningsDisplay() {
-    let sector = WeeklyEarningsSector.value;
-    let minYear = WeeklyEarningsMinYear.value;
-    let maxYear = WeeklyEarningsMaxYear.value;
-
-    WeeklyEarningsElement.src = `api/graph_weekly_earnings_trend?sector=${sector}&min=${minYear}&max=${maxYear}`;
-
-    if (minYear > maxYear) {
-        let DataYears = await (await fetch("api/data_years?key=AvgWeeklyEarnings")).json();
-        
-        if (maxYear - 1 < DataYears[0]) {
-            WeeklyEarningsMinYear.value = DataYears[0];    
-        }
-        else {
-            WeeklyEarningsMinYear.value = maxYear - 1;
-        }
-        updateWeeklyEarningsDisplay();
-    }
+    await updateDisplay(WeeklyEarningsElement, WeeklyEarningsSector, WeeklyEarningsMinYear, WeeklyEarningsMaxYear, "graph_weekly_earnings_trend", "AvgWeeklyEarnings");
 }
 
 function removeOptions(element) {
@@ -75,4 +163,38 @@ function removeOptions(element) {
     for (i = L; i >= 0; i--) {
         element.remove(i);
     }
+}
+
+
+async function initialiseUserData() {
+    document.getElementById("usrGender").src = "/api/user_data_graph?key=Gender";
+    document.getElementById("usrAge").src = "/api/user_data_graph?key=Age";
+    document.getElementById("usrAnnualIncome").src = "/api/user_data_graph?key=AnnualIncome";
+}
+
+async function initialiseFormData() {
+    SurveyGender = document.getElementById("surveyGender");
+    SurveyAge = document.getElementById("surveyAge");
+    SurveySector = document.getElementById("surveyJobSector");
+    SurveyCounty = document.getElementById("surveyCounty");
+    SurveyIncome = document.getElementById("surveyAnnualIncome");
+    SurveySatisfaction = document.getElementById("surveySatisfaction");
+
+    let userFormOptions = await fetchData("/api/form_options");
+
+    Object.keys(userFormOptions).forEach(formKey => {
+        let ele = document.getElementById(`survey${formKey}`);
+        removeOptions(ele);
+
+        userFormOptions[formKey].forEach(option => {
+            let surveySelectionOption = document.createElement("option");
+            surveySelectionOption.value = option;
+            surveySelectionOption.textContent = option;
+            ele.append(surveySelectionOption);
+        })
+    })
+
+    // Setting other defaults
+    SurveyCounty.value = "Dublin";
+    SurveySatisfaction.value = "Neutral";
 }

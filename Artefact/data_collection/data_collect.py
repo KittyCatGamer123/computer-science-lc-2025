@@ -141,6 +141,7 @@ if __name__ == "__main__":
         
         output_key = "ConsumerPriceGoods" if job_sub_index == "Goods" else "ConsumerPriceMortgageInterest"
         
+        # Split month into year and quarter
         month_split = ConsumerPrices["Month"][index].split(" ")
         year = month_split[0]
         quarter = MONTH_TO_YEAR_QUARTER[month_split[1]]

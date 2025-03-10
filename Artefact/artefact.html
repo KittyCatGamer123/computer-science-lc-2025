@@ -16,6 +16,42 @@
             </h2>
             <hr />
 
+            <h3>Employment Levels</h3>
+            <div class="GraphContainers">
+                <img id="EmployementLevels" src="#">
+
+                <div class="GraphSettings">
+                    <div>
+                        <p style="color:#0f6ed1"><b>Sector</b></p>
+                        <select id="EmploymentSector">
+                            <option>All NACE economic sectors</option>
+                            <option>Mining and quarrying (B)</option>
+                            <option>Manufacturing (C)</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 30px">
+                        <div class="Filterlike">
+                            <p><b>Min. Year</b></p>
+                            <select class="YearDropdown" id="EmploymentMinYear">
+                            </select>
+                        </div>
+    
+                        <div class="Filterlike">
+                            <p><b>Max. Year</b></p>
+                            <select class="YearDropdown" id="EmploymentMaxYear">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h3 style="color: #522;">Analysis</h3>
+            <p>Insert informative stuff here</p>
+            <p>Some things went <span style="color:rgb(0, 205, 0)">Up</span> and some things went <span style="color:rgb(224, 0, 123)">Down</span></p>
+
+            <hr/>
+
             <h3>Weekly Earnings Trend</h3>
             <div class="GraphContainers">
                 <img id="WeeklyEarnings" src="#">
@@ -45,6 +81,57 @@
                     </div>
                 </div>
 
+            </div>
+            <h3 style="color: #522;">Analysis</h3>
+            <p>Insert informative stuff here</p>
+            <p>Some things went <span style="color:rgb(0, 205, 0)">Up</span> and some things went <span style="color:rgb(224, 0, 123)">Down</span></p>
+
+            <hr/>
+            <h3>User-Submitted Data</h3>
+            <div style="display: grid; grid-template-columns: auto auto;">
+                <img id="usrGender">
+                <img id="usrAge">
+                <img id="usrAnnualIncome">
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <h3 style="color:#0f6ed1">Participate in Our Survey!</h3>
+                <p style="color:#444; font-size: 12px;">If you wish to participate, the data you provide will be used for the graphs above only, and your information is completely anonymous.<br/>
+                For GDPR Laws, if you under the age of 18, you may not participate in this survey.</p>
+            </div>
+            <div class="formContainer">
+                <div class="formItem">
+                    <p>What is your gender?</p>
+                    <select id="surveyGender">
+                    </select>
+                </div>
+                <div class="formItem">
+                    <p>What age range do you fall into currently?</p>
+                    <select id="surveyAge">
+                    </select>
+                </div>
+                <div class="formItem">
+                    <p>What sector do you work in?</p>
+                    <select id="surveyJobSector">
+                    </select>
+                </div>
+                <div class="formItem">
+                    <p>Which county do you work in?</p>
+                    <select id="surveyCounty">
+                    </select>
+                </div>
+                <div class="formItem">
+                    <p>What is your Annual Income range? (In Euro)</p>
+                    <select id="surveyAnnualIncome">
+                    </select>
+                </div>
+                <div class="formItem">
+                    <p>How satisfied/dissatisfied are you with your position?</p>
+                    <select id="surveySatisfaction">
+                    </select>
+                </div>
+            </div>
+            <div class="formSubmitContainer">
+                <button id="formSubmit">Submit</button>
             </div>
         </div>
     </div>

@@ -55,9 +55,9 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 - Develop a web-based interface to provide the public with information about chosen dataset, and display the data visualisations created in the information system. 
 
-⭕ Ensure that users can interact with the data visualisations on the information system 
+✔️ Ensure that users can interact with the data visualisations on the information system 
 
-- (e.g., hover to see details, click to filter data, change ranges, etc.)
+- ✔️ click to filter data, ✔️ change ranges, etc
 
 ⭕ Create a form or poll relating to chosen dataset on information system that collects and stores data from the users
 

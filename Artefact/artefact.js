@@ -183,6 +183,9 @@ async function initialiseFormData() {
     let userFormOptions = await fetchData("/api/form_options");
 
     Object.keys(userFormOptions).forEach(formKey => {
+        if (formKey == "Age") 
+            return;
+
         let ele = document.getElementById(`survey${formKey}`);
         removeOptions(ele);
 

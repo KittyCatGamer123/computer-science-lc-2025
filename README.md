@@ -41,7 +41,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Artefact
 
-**Progress:** 2 / 6
+**Progress:** 4 / 6
 
 ✔️ Collect and prepare data
 - ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
@@ -51,17 +51,17 @@ Computer Science Project for 2025 for the Leaving Certificate.
 2. ✔️ Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
 3. ✔️ Use Python data structure(s) such as lists, tuples or dictionaries to manage the data you will be analysing. 
 
-⭕ Create a basic interactive information system interface
-
+✔️ Change ranges, etc Create a basic interactive information system interface
 - Develop a web-based interface to provide the public with information about chosen dataset, and display the data visualisations created in the information system. 
 
 ✔️ Ensure that users can interact with the data visualisations on the information system 
 
-- ✔️ click to filter data, ✔️ change ranges, etc
+- ✔️ Allow users to click to filter data
+- ✔️ Allow users to change ranges
 
 ⭕ Create a form or poll relating to chosen dataset on information system that collects and stores data from the users
 
-1. This form must show evidence of the use of JavaScript.
+1. ✔️ This form must show evidence of the use of JavaScript.
 2. The data collected should contain at least three different data types.
 3. The data should be validated and stored in a database or file. 
 4. Some aspect of the collected data from all users should be summarised and displayed through the information system. 

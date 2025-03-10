@@ -2,7 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-#matplotlib.use('agg')
+matplotlib.use('agg')
 
 # Get the parent directory (Project)
 # Add the parent directory to sys.path
@@ -35,14 +35,16 @@ def graph_consumer_prices() -> plt.Figure:
 
         ticks_indicies = []
         ticks_labels = []
+        
         for index, n in enumerate(DATA["ConsumerPriceMortgageInterest"]):
             year = n['Year']
             x_axis.append(f"{year}Q{n['Quarter']}")
             y_axis.append(n["Value"])
-
-            if str(year) not in ticks_labels:
+            year_label = "'" + str(year)[2:]
+            
+            if year_label not in ticks_labels:
                 ticks_indicies.append(index)
-                ticks_labels.append(str(year))
+                ticks_labels.append(year_label)
 
         plt.xticks(ticks_indicies, ticks_labels)
         plt.plot(x_axis, y_axis)
@@ -119,10 +121,11 @@ def graph_employment_trend(sector: str, year_min: int = 0, year_max: int = 9999)
         year = job['Year']
         labels.append(f"{year}Q{job['Quarter']}")
         values.append(job['Value'])
-
-        if str(year) not in ticks_labels:
+        year_label = "'" + str(year)[2:]
+            
+        if year_label not in ticks_labels:
             ticks_indicies.append(index)
-            ticks_labels.append(str(year))
+            ticks_labels.append(year_label)
 
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)
@@ -167,10 +170,11 @@ def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 
         year = job['Year']
         labels.append(f"{year}Q{job['Quarter']}")
         values.append(job['Value'])
-
-        if str(year) not in ticks_labels:
+        year_label = "'" + str(year)[2:]
+            
+        if year_label not in ticks_labels:
             ticks_indicies.append(index)
-            ticks_labels.append(str(year))
+            ticks_labels.append(year_label)
 
     plt.xticks(ticks_indicies, ticks_labels)
     plt.plot(labels, values)

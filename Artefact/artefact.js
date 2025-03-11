@@ -180,10 +180,12 @@ async function initialiseFormData() {
     SurveyIncome = document.getElementById("surveyAnnualIncome");
     SurveySatisfaction = document.getElementById("surveySatisfaction");
 
+    document.getElementById("formSubmit").addEventListener("click", formSubmitPressed);
+
     let userFormOptions = await fetchData("/api/form_options");
 
     Object.keys(userFormOptions).forEach(formKey => {
-        if (formKey == "Age") 
+        if (formKey == "Age" || formKey == "AnnualIncome") 
             return;
 
         let ele = document.getElementById(`survey${formKey}`);
@@ -197,7 +199,98 @@ async function initialiseFormData() {
         })
     })
 
-    // Setting other defaults
+    // Setting defaults
+    SurveyAge.value = "25";
+    SurveyIncome.value = "45000";
     SurveyCounty.value = "Dublin";
     SurveySatisfaction.value = "Neutral";
+}
+
+async function formSubmitPressed() {
+    let submitButton = document.getElementById("formSubmit");
+    submitButton.disabled = true;
+
+    let userFormOptions = await fetchData("/api/form_options");
+
+    if (SurveyAge.value == "") { 
+        alert("Entered invalid age. Please only use numbers.");
+        submitButton.disabled = false;
+        return;
+    }
+
+    let ageValue = parseInt(SurveyAge.value);
+
+    if (ageValue > 130) {
+        alert("Please enter a realistic age.");
+        submitButton.disabled = false;
+        return;
+    }
+    else if (ageValue < 18) {
+        alert("You must be over 18 to enter this survey.");
+        submitButton.disabled = false;
+        return;
+    }
+
+    let ageRange = "";
+    if (ageValue >= 65) {
+        ageRange = "65+";
+    }
+    else {
+        for (let i = userFormOptions['Age'].length - 2; i > -1; i--) {
+            let valueRange = userFormOptions['Age'][i];
+            let valueSplit = valueRange.split("-");
+            
+            if (ageValue < parseInt(valueSplit[0])) continue; // eg. 17 < 18-25
+            if (ageValue > parseInt(valueSplit[1])) continue; // eg. 65 > 18-25
+
+            ageRange = valueRange;
+            break;
+        }
+    }
+
+    if (SurveyIncome.value == "" || isNaN(parseInt(SurveyIncome.value))) { 
+        alert("Entered invalid annual salary. Please only use numbers (You can use commas).");
+        submitButton.disabled = false;
+        return;
+    }
+
+    let annualValue = SurveyIncome.value.replace(/\D/g, "");
+    SurveyIncome.value = annualValue;
+
+    let annualRange = "";
+    if (annualValue >= 120000) {
+        annualRange = "120,000+";
+    }
+    else {
+        for (let i = userFormOptions['AnnualIncome'].length - 2; i > -1; i--) {
+            let valueRange = userFormOptions['AnnualIncome'][i];
+            let valueSplit = valueRange.split("-");
+            
+            if (annualValue < parseInt(valueSplit[0].replace(",",""))) continue; // eg. 17 < 18-25
+            if (annualValue > parseInt(valueSplit[1].replace(",",""))) continue; // eg. 65 > 18-25
+
+            annualRange = valueRange;
+            break;
+        }
+    }
+
+    console.log(`/api/user_form_entry?
+        gender=${SurveyGender.value}&
+        age=${ageRange}&
+        sector=${SurveySector.value}&
+        county=${SurveyCounty.value}&
+        annualincome=${annualRange}&
+        satisfaction=${SurveySatisfaction.value}
+    `)
+
+    let user_submit_response = await fetch(`/api/user_form_entry?gender=${SurveyGender.value}&age=${ageRange}&sector=${SurveySector.value}&county=${SurveyCounty.value}&annualincome=${annualRange}&satisfaction=${SurveySatisfaction.value}`);
+
+    if (user_submit_response.status == 200) {
+        alert("Thank you for participating!");
+        submitButton.textContent = "✔️";
+    }
+    else {
+        alert("There was an issue sending your answers. Please try again.");
+        submitButton.disabled = false;
+    }
 }

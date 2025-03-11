@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artefect Interface</title>
-    <link type="text/css" rel="stylesheet" href="artefact.css">
-    <script src="artefact.js"></script>
+    <link type="text/css" rel="stylesheet" href="/artefact.css">
+    <script src="/artefact.js"></script>
 </head>
 
 <body onload="initialise()">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="formItem">
                     <p>How old are you?</p>
-                    <input id="surveyAge" type="number">
+                    <input id="surveyAge" type="number" min="18">
                 </div>
                 <div class="formItem">
                     <p>What sector do you work in?</p>
@@ -119,9 +119,8 @@
                     </select>
                 </div>
                 <div class="formItem">
-                    <p>What is your Annual Income range? (In Euro)</p>
-                    <select id="surveyAnnualIncome">
-                    </select>
+                    <p>What is your Annual Income?</p>
+                    <input id="surveyAnnualIncome" type="text" >
                 </div>
                 <div class="formItem">
                     <p>How satisfied/dissatisfied are you with your position?</p>

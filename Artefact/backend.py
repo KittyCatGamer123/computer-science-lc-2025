@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, send_file, abort
 from matplotlib import figure
 import io
@@ -28,7 +29,7 @@ def frontend_css():
 # in which can be used in a <script> tag
 @app.route("/artefact.js")
 def frontend_js():
-    return open("artefact.js", "r").read(), 200, {'Content-Type': 'text/javascript'}
+    return open("artefact.js", "r", encoding="utf-8").read(), 200, {'Content-Type': 'text/javascript'}
 
 # Add "artefact.html" to the virtual file system
 @app.route("/")
@@ -177,7 +178,6 @@ def user_data():
         case "Gender":
             plotimg = plot_to_image(Visualiser.user_data_gender())
             return send_file(plotimg, mimetype="image/png")
-        
     
         case "Age":
             plotimg = plot_to_image(Visualiser.user_data_age())
@@ -193,3 +193,23 @@ def user_data():
 @app.route("/api/form_options")
 def form_options():
     return utils.read_json("user_form/user_form_options.json")
+
+@app.route("/api/user_form_entry")
+def new_entry():
+    user_data: list[dict] = utils.read_json("user_form/user_data.json")
+    next_id = user_data[-1]['Id'] + 1
+
+    user_data.append({
+        "Id": next_id,
+        "Gender": request.args.get("gender"),
+        "Age": request.args.get("age"),
+        "County": request.args.get("county"),
+        "JobSector": request.args.get("sector"),
+        "AnnualIncome": request.args.get("annualincome"),
+        "Satisfaction": request.args.get("satisfaction")
+    })
+
+    with open("user_form/user_data.json", "w") as ud:
+        ud.write(json.dumps(user_data))
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}

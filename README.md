@@ -41,29 +41,29 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Artefact
 
-**Progress:** 4 / 6
+**Progress:** 5 / 6
 
 ✔️ Collect and prepare data
 - ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
 
 ✔️ Data analytics and visualisation 
-1. ✔️ Use Python to carry out analytics on data and to create at least two different basic visualisations (e.g., bar chart, line graph, pie chart) with each representing different key aspects of the dataset.
+1. ✔️ Use Python to carry out analytics on data and to create at least two different basic visualisations (e.g., ✔️ bar chart,  ✔️ line graph, pie chart) with each representing different key aspects of the dataset.
 2. ✔️ Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
 3. ✔️ Use Python data structure(s) such as lists, tuples or dictionaries to manage the data you will be analysing. 
 
-✔️ Change ranges, etc Create a basic interactive information system interface
-- Develop a web-based interface to provide the public with information about chosen dataset, and display the data visualisations created in the information system. 
+✔️ Create a basic interactive information system interface
+- ✔️ Develop a web-based interface to provide the public with information about chosen dataset, and display the data visualisations created in the information system. 
 
 ✔️ Ensure that users can interact with the data visualisations on the information system 
 
 - ✔️ Allow users to click to filter data
 - ✔️ Allow users to change ranges
 
-⭕ Create a form or poll relating to chosen dataset on information system that collects and stores data from the users
+✔️ Create a form or poll relating to chosen dataset on information system that collects and stores data from the users
 
 1. ✔️ This form must show evidence of the use of JavaScript.
-2. The data collected should contain at least three different data types.
-3. The data should be validated and stored in a database or file. 
-4. Some aspect of the collected data from all users should be summarised and displayed through the information system. 
+2. ✔️ The data collected should contain at least three different data types.
+3. ✔️ The data should be validated and stored in a database or file. 
+4. ✔️ Some aspect of the collected data from all users should be summarised and displayed through the information system. 
 
 ⭕ Create a separate area that makes recommendations or helps inform decisions based on analysis of your chosen dataset.

@@ -5,7 +5,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ## Current Progress
 
-**Overall Progress:** 3 / 10
+**Overall Progress:** 6 / 10
 
 ### Legend
 - ✔️ Completed
@@ -30,8 +30,8 @@ Computer Science Project for 2025 for the Leaving Certificate.
 ▶ Create *(max. 1000 words)*
 - ▶ Include a progress log which gives an overview of the development process.
 - ✔️ Carry out testing during the development process using a test table.
-- ⭕ One of the problems that you encountered and describe how you overcame the problem.
-- ⭕ Clearly explain the algorithm that you designed for the analytics part of your project.
+- ▶ One of the problems that you encountered and describe how you overcame the problem.
+- ▶ Clearly explain the algorithm that you designed for the analytics part of your project.
 - ⭕ Providing pseudocode of the algorithm and an explanation of the code.
 
 ⭕ Evaluation *(max. 300 words)*
@@ -66,4 +66,4 @@ Computer Science Project for 2025 for the Leaving Certificate.
 3. ✔️ The data should be validated and stored in a database or file. 
 4. ✔️ Some aspect of the collected data from all users should be summarised and displayed through the information system. 
 
-⭕ Create a separate area that makes recommendations or helps inform decisions based on analysis of your chosen dataset.
+▶ Create a separate area that makes recommendations or helps inform decisions based on analysis of your chosen dataset.

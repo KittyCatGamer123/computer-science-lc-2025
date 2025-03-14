@@ -207,8 +207,7 @@ def user_data_freqbar(key: str, name: str):
     user_survey_options = utils.read_json("user_form/user_form_options.json")
 
     labels = user_survey_options[key] # [Male, Female, ...]
-    item_frequency = {}                  # { Male: #, Female: #, ... }
-
+    item_frequency = {}               # { Male: #, Female: #, ... }
 
     for val in user_data:
         item_key = val[key]
@@ -218,8 +217,15 @@ def user_data_freqbar(key: str, name: str):
         item_frequency[item_key] += 1
 
     values = [item_frequency[x] for x in labels]
+
+    # Adds an \n to labels with dashes in them
+    for index in range(0, len(labels)):
+        label: str = labels[index]
+        if "-" in label:
+            label_split = label.split("-")
+            labels[index] = f"{label_split[0]}-\n{label_split[1]}"
+    
     fig, ax = plt.subplots()
-    plt.clf()
     
     ax.bar(labels, values, width=1, edgecolor="white")
     plt.title(name)

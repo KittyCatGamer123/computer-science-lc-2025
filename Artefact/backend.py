@@ -2,12 +2,18 @@ import json
 from flask import Flask, request, send_file, abort
 from matplotlib import figure
 import io
+import threading
 
 import visualisation.visualiser as Visualiser
 import utils
 
 app = Flask(__name__)
 
+lock = threading.Lock()
+
+if __name__ == "__main__":
+    app.run(threaded=True)
+    
 # Takes in a visualised plot and returns an Image class
 def plot_to_image(fig: figure) -> bytes:
     if fig is None:
@@ -50,10 +56,11 @@ def occupations():
         # Client Error (invalid parameter)
         return abort(400)
     
-    plot_data = plot_to_image(Visualiser.graph_occupations(year))
-    if plot_data is not None:
-        # Return a response as an image
-        return send_file(plot_data, mimetype="image/png")
+    with lock:
+        plot_data = plot_to_image(Visualiser.graph_occupations(year))
+        if plot_data is not None:
+            # Return a response as an image
+            return send_file(plot_data, mimetype="image/png")
 
     # Bad Request (No file to return)
     return abort(400)
@@ -78,10 +85,11 @@ def employment_trend():
     if "min" in request.args: year_min = request.args.get("min")
     if "max" in request.args: year_max = request.args.get("max")
     
-    plot_data = plot_to_image(Visualiser.graph_employment_trend(sector, year_min, year_max))
-    if plot_data is not None:
-        # Return a response as an image
-        return send_file(plot_data, mimetype="image/png")
+    with lock:
+        plot_data = plot_to_image(Visualiser.graph_employment_trend(sector, year_min, year_max))
+        if plot_data is not None:
+            # Return a response as an image
+            return send_file(plot_data, mimetype="image/png")
 
     # Bad Request (No file to return)
     return abort(400)
@@ -106,10 +114,11 @@ def weeky_earnings():
     if "min" in request.args: year_min = request.args.get("min")
     if "max" in request.args: year_max = request.args.get("max")
     
-    plot_data = plot_to_image(Visualiser.graph_weekly_earnings_trend(sector, year_min, year_max))
-    if plot_data is not None:
-        # Return a response as an image
-        return send_file(plot_data, mimetype="image/png")
+    with lock:    
+        plot_data = plot_to_image(Visualiser.graph_weekly_earnings_trend(sector, year_min, year_max))
+        if plot_data is not None:
+            # Return a response as an image
+            return send_file(plot_data, mimetype="image/png")
 
     # Bad Request (No file to return)
     return abort(400)
@@ -174,21 +183,22 @@ def user_data():
         # Bad Request (Key a part of data)
         return abort(400)
     
-    match key:
-        case "Gender":
-            plotimg = plot_to_image(Visualiser.user_data_gender())
-            return send_file(plotimg, mimetype="image/png")
-    
-        case "Age":
-            plotimg = plot_to_image(Visualiser.user_data_age())
-            return send_file(plotimg, mimetype="image/png")
-    
-        case "AnnualIncome":
-            plotimg = plot_to_image(Visualiser.user_data_payrange())
-            return send_file(plotimg, mimetype="image/png")
+    with lock:
+        match key:
+            case "Gender":
+                plotimg = plot_to_image(Visualiser.user_data_gender())
+                return send_file(plotimg, mimetype="image/png")
         
-        case _:
-            return abort(400)
+            case "Age":
+                plotimg = plot_to_image(Visualiser.user_data_age())
+                return send_file(plotimg, mimetype="image/png")
+        
+            case "AnnualIncome":
+                plotimg = plot_to_image(Visualiser.user_data_payrange())
+                return send_file(plotimg, mimetype="image/png")
+            
+            case _:
+                return abort(400)
 
 @app.route("/api/form_options")
 def form_options():

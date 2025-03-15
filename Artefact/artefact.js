@@ -12,6 +12,10 @@ let WeeklyEarningsSectorToggle;
 let WeeklyEarningsMinYear;
 let WeeklyEarningsMaxYear;
 
+/* Occupations Graph Variables */
+let OccupationsElement;
+let OccupationsYear;
+
 /* User Survey Variables */
 let SurveyGender;
 let SurveyAge;
@@ -28,6 +32,7 @@ let SurveySatisfaction;
 async function initialise() {
     EmploymentElement = document.getElementById("EmployementLevels");
     WeeklyEarningsElement = document.getElementById("WeeklyEarnings");
+    OccupationsElement = document.getElementById("Occupations");
 
     /* 
         Dropdowns must be initialised before displays are updated
@@ -37,6 +42,8 @@ async function initialise() {
     await initialiseDropdowns();
     await updateEmploymentDisplay();
     await updateWeeklyEarningsDisplay();
+    await updateOccupationsDisplay();
+    await initialiseConsumerPrices();
     await initialiseUserData();
     await initialiseFormData();
 }
@@ -54,27 +61,35 @@ async function initialiseDropdowns() {
     WeeklyEarningsMinYear = document.getElementById("WeeklyEarningsMinYear");
     WeeklyEarningsMaxYear = document.getElementById("WeeklyEarningsMaxYear");
 
+    OccupationsYear = document.getElementById("OccupationsYear");
+
     removeOptions(EmploymentSector);
     removeOptions(WeeklyEarningsSector);
-
+    
     await populateDropdown(WeeklyEarningsSector, "api/data_sectors?key=AvgWeeklyEarnings");
     await populateDropdown(EmploymentSector, "api/data_sectors?key=Employment");
-
+    
     removeOptions(EmploymentMinYear);
     removeOptions(EmploymentMaxYear);
     removeOptions(WeeklyEarningsMinYear);
     removeOptions(WeeklyEarningsMaxYear);
-
+    removeOptions(OccupationsYear);
+    
     let years = await fetchData("api/data_years?key=AvgWeeklyEarnings");
     populateYearDropdowns(WeeklyEarningsMinYear, WeeklyEarningsMaxYear, years);
 
     years = await fetchData("api/data_years?key=Employment");
     populateYearDropdowns(EmploymentMinYear, EmploymentMaxYear, years);
 
+    years = await fetchData("api/data_years?key=EmploymentLevelsAndOccupations");
+    await populateDropdown(OccupationsYear, "api/data_years?key=EmploymentLevelsAndOccupations");
+    OccupationsYear.value = years[years.length - 1];
+
     WeeklyEarningsMinYear.addEventListener("change", updateWeeklyEarningsDisplay);
     WeeklyEarningsMaxYear.addEventListener("change", updateWeeklyEarningsDisplay);
     EmploymentMinYear.addEventListener("change", updateEmploymentDisplay);
     EmploymentMaxYear.addEventListener("change", updateEmploymentDisplay);
+    OccupationsYear.addEventListener("change", updateOccupationsDisplay);
 }
 
 async function fetchData(url) {
@@ -158,6 +173,10 @@ async function updateWeeklyEarningsDisplay() {
     await updateDisplay(WeeklyEarningsElement, WeeklyEarningsSector, WeeklyEarningsMinYear, WeeklyEarningsMaxYear, "graph_weekly_earnings_trend", "AvgWeeklyEarnings");
 }
 
+async function updateOccupationsDisplay() {
+    OccupationsElement.src = `api/graph_occupations?year=${OccupationsYear.value}`;
+}
+
 function removeOptions(element) {
     let i, L = element.options.length - 1;
     for (i = L; i >= 0; i--) {
@@ -165,10 +184,15 @@ function removeOptions(element) {
     }
 }
 
+async function initialiseConsumerPrices() {
+    document.getElementById("Expenditure").src = `api/graph_consumer_prices`;
+}
 
 async function initialiseUserData() {
     document.getElementById("usrGender").src = "/api/user_data_graph?key=Gender";
     document.getElementById("usrAge").src = "/api/user_data_graph?key=Age";
+    document.getElementById("usrJobSector").src = "/api/user_data_graph?key=JobSector";
+    document.getElementById("usrCounty").src = "/api/user_data_graph?key=County";
     document.getElementById("usrAnnualIncome").src = "/api/user_data_graph?key=AnnualIncome";
 }
 
@@ -201,7 +225,7 @@ async function initialiseFormData() {
 
     // Setting defaults
     SurveyAge.value = "25";
-    SurveyIncome.value = "45000";
+    SurveyIncome.value = "€45,000";
     SurveyCounty.value = "Dublin";
     SurveySatisfaction.value = "Neutral";
 }

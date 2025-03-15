@@ -1,8 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 
-
-matplotlib.use('agg')
+#matplotlib.use('agg')
 
 # Get the parent directory (Project)
 # Add the parent directory to sys.path
@@ -17,7 +16,7 @@ import utils
 DATA = utils.read_json("compiled_data.json")
 
 # Graphs the Consumer Prices from the compiled_data.json
-# Creates line graph
+# Creates line graphs
 
 def graph_consumer_prices() -> plt.Figure:
     data_key_list = ["ConsumerPriceMortgageInterest", "ConsumerPriceGoods"]
@@ -26,7 +25,7 @@ def graph_consumer_prices() -> plt.Figure:
     fig, ax = plt.subplots()
     plt.clf()
 
-    for i, key in enumerate(data_key_list):
+    for i, key in enumerate(data_key_list):        
         plt.subplot(100 + (key_list_len * 10) + (i + 1))
         plt.title(utils.split_by_capitals(key))
 
@@ -47,8 +46,11 @@ def graph_consumer_prices() -> plt.Figure:
                 ticks_labels.append(year_label)
 
         plt.xticks(ticks_indicies, ticks_labels)
+        plt.xlabel("Year")
+        plt.ylabel("Amount Spent (€1)")
         plt.plot(x_axis, y_axis)
         
+    fig.set_size_inches(14, 4)
     return plt.gcf()
 
 # Graphs the Occupations from the compiled_data.json
@@ -77,7 +79,6 @@ def graph_occupations(year: int) -> plt.Figure:
         values.append(occupation["Value"])
 
     fig, ax = plt.subplots()
-    plt.clf()
     ax.pie(values, labels=labels)
 
     plt.title(f"Employment Levels and Occupations for Year {year}")
@@ -128,11 +129,12 @@ def graph_employment_trend(sector: str, year_min: int = 0, year_max: int = 9999)
             ticks_labels.append(year_label)
 
     plt.xticks(ticks_indicies, ticks_labels)
+    plt.xlabel("Year")
+    plt.ylabel("People in Sector (1,000)")
     plt.plot(labels, values)
     plt.title(f"Employment Trend for\n{sector}")
     
     return plt.gcf()
-
 
 # Creates a line graph of Weekly Earnings of a job over time
 # Sector: The Sector object to search for in compiled data
@@ -177,6 +179,8 @@ def graph_weekly_earnings_trend(sector: str, year_min: int = 0, year_max: int = 
             ticks_labels.append(year_label)
 
     plt.xticks(ticks_indicies, ticks_labels)
+    plt.xlabel("Year")
+    plt.ylabel("Earnings (€1000)")
     plt.plot(labels, values)
     plt.title(f"Average Weekly Earnings for\n{sector}")
     
@@ -230,4 +234,33 @@ def user_data_freqbar(key: str, name: str):
     ax.bar(labels, values, width=1, edgecolor="white")
     plt.title(name)
 
+    return plt.gcf()
+
+## Returns pie chart of Sectors in user_data.json
+def user_data_sector():
+    return user_data_piechart("JobSector", "Sectors")
+
+## Returns pie chart of Counties in user_data.json
+def user_data_counties():
+    return user_data_piechart("County", "Counties")
+
+## Takes in a key from a user_data dictionary and uses its frequencies to display a pie chart.
+def user_data_piechart(key: str, name: str):
+    user_data: list[dict] = utils.read_json("user_form/user_data.json")
+    
+    sector_values = {}
+    for entry in user_data:
+        title = entry[key]
+        if title not in sector_values:
+            sector_values[title] = 0
+        
+        sector_values[title] += 1
+    
+    values = [v for v in sector_values.values()]
+    labels = [x for x in sector_values.keys()]
+    
+    fig, ax = plt.subplots()
+    ax.pie(values, labels=labels, autopct='')
+    plt.title(name)
+    
     return plt.gcf()

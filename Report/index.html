@@ -47,6 +47,13 @@
             levels are performing, and an opinion on whether the government could or should invest in it<br/>
             can be made by each person individually after seeing such.<br/>
             <br/>
+            Prior to deciding this, I also explored datasets on homelessness rates and income and<br/>
+            poverty rates. However, the data provided for these topics was not sufficient for the rest of<br/>
+            the corresponding data I'd found, as they spanned from 2006 - 2025, and the data<br/>
+            for homelessness and income/poverty rates only contained data from Consensuses in 2021,<br/>
+            rendering them insufficient for analysis. Other datasets like "Poverty and Deprivation Levels"<br/>
+            likewise also were not sufficient because they spanned 2020 - 2024.<br/>
+            <br/>
             Being able to visualise data is important, so I found, based on the visualisations from CSO<br/>
             and the software <a href="https://www.tableau.com/">Tableau</a>, that being able to have data be comprehensible in a simple<br/>
             format is always preferable for the end-user. Tableau was able to provide multiple<br/>
@@ -118,56 +125,7 @@
             <li>Utilised line graphs and pie charts to visualise data trends such as Average Weekly Earnings, Employment Levels, and Mortgage Interest.</li>
         </ul>
         <p><b>Visualisation Testing</b></p><br/>
-        <table class="testingTable">
-            <tr>
-                <th>Action</th>
-                <th>Input</th>
-                <th>Expected Output</th>
-                <th>Actual Output</th>
-                <th>Test Result</th>
-                <th>Comments</th>
-            </tr>
-            <tr>
-                <td>Testing the "graph_occupations()" function</td>
-                <td>An integer in the form of a year.</td>
-                <td></td>
-                <td></td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span> or <span style="color:rgb(219, 93, 162)">Fail</span></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>2015 <span style="color:#555; font-size:10px;"><br/>(integer)</span></td>
-                <td>Visualisation for the year 2015.</td>
-                <td>A pie chart supplied with data for the year 2015.</td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
-                <td>Works as anticipated, unsurprisingly since it is the perfect input fit for this function.</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>"2014" <span style="color:#555; font-size:10px;"><br/>(String)</span></td>
-                <td>Raise a TypeError exception due to the input being a string and not an integer.</td>
-                <td>Output "No data available for year 2014" and script terminated.</td>
-                <td><span style="color:rgb(219, 93, 162)">Fail</span></td>
-                <td>Despite specifying an integer as the parameter of this function, it still ran without errors, only to not be able to locate "2014" within the data (Years are stored as floats there)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>-2.5 <span style="color:#555; font-size:10px;"><br/>(Float)</span></td>
-                <td>Raise a TypeError exception due to the input not being an integer.</td>
-                <td>Output "No data available for year -2.5" and script terminated.</td>
-                <td><span style="color:rgb(219, 93, 162)">Fail</span></td>
-                <td>Same reason specified above, except for floats, even when the value is negative.</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>[2015]<span style="color:#555; font-size:10px;"><br/>(List)</span></td>
-                <td>Raise a TypeError exception due to the input not being an integer.</td>
-                <td>Output "No data available for year [2015]" and script terminated.</td>
-                <td><span style="color:rgb(219, 93, 162)">Fail</span></td>
-                <td>Same reason as specified above.</td>
-            </tr>
-        </table>
+        <img src="assets/TestTable1.PNG">
         <p>Conclusion - This function will need to be adjusted to handle invalid type inputs.</p>
 
         <h4>Week Four</h4>
@@ -179,48 +137,8 @@
             <li>Created a frontend which can now make requests to a Flask-built API in which builds an image from a graph and returns it.</li>
         </ul>
 
-        <table class="testingTable">
-            <tr>
-                <th>Action</th>
-                <th>Input</th>
-                <th>Expected Output</th>
-                <th>Actual Output</th>
-                <th>Test Result</th>
-                <th>Comments</th>
-            </tr>
-            <tr>
-                <td>Testing the "/api/graph_occupations" integrity with different parameter inputs</td>
-                <td>An integer in the form of a year.</td>
-                <td></td>
-                <td></td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span> or <span style="color:rgb(219, 93, 162)">Fail</span></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>2017</td>
-                <td>Visualisation for the year 2017.</td>
-                <td>A pie chart supplied with data for the year 2017.</td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
-                <td>Works as anticipated, unsurprisingly since it is the perfect input fit for this function.</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>2025</td>
-                <td>Response 400 (Bad Request)</td>
-                <td>Bad Request from server.</td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
-                <td>Years outside the data range will return 'None' from the visualiser.</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>-55.6</td>
-                <td>Response 400 (Bad Request)</td>
-                <td>Bad Request from server.</td>
-                <td><span style="color:rgb(93, 219, 93)">Pass</span></td>
-                <td>After first testing mentioned above, visualiser now handles invalid number inputs and returns 'None', so now the API responds with a 400.</td>
-            </tr>
-        </table>
+        <p><b>API Testing</b></p><br/>
+        <img src="assets/TestTable2.PNG">
 
         <h4>Week Five</h4>
         <p><b>Interface Visualisations</b></p>
@@ -246,11 +164,6 @@
             attempting to create multiple graphs at once, leading to a race condition where data was<br/>
             written concurrently, and overwriting data over different graphs.<br/>
             <br/> 
-            This was a considerably difficult challenge to overcome, as I was not at all anticipating it to<br/>
-            occur. To resolve this, I began exploring ways to ensure each request processes its graph<br/>
-            independently. I considered using my own type of function “queueing” so that each request<br/>
-            will run linearly, at the expense of waiting time, which I argue would be a better trade-off than<br/>
-            a non-functioning graph system.
         </p>
     </div>
     <div id="Section_Eval">
@@ -287,6 +200,18 @@
             <li><a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-extension-pack/">Python Extension Pack for Visual Studio Code</a> -- Extension for debugging and syntax highlighting within the IDE.</li>
             <li><a href="https://github.com/">GitHub</a> -- Version Control used to keep my code up to date between devices in which I used to work on my project.</li>
             <li><a href="https://www.google.ie/">Google</a> -- Search Engine used to find information and resources for the project.</li>
+        </ul>
+        <ul>
+            <h3>Python Libraries Used</h3>
+            <li>csv</li>
+            <li>io</li>
+            <li>sys</li>
+            <li>requests</li>
+            <li>json</li>
+            <li>random</li>
+            <li>flask</li>
+            <li>matplotlib</li>
+            <li>threading</li>
         </ul>
 
         <button type="button" class="collapsible">Help and Resources for Code Used ▾ (Click to Toggle)</button>
@@ -376,7 +301,7 @@
         </tr>
         <tr>
             <td>Investigation</td>
-            <td>370</td>
+            <td>424</td>
         </tr>
         <tr>
             <td>Plan and Design</td>

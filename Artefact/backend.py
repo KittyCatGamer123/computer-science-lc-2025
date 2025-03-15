@@ -123,6 +123,15 @@ def weeky_earnings():
     # Bad Request (No file to return)
     return abort(400)
 
+@app.route("/api/graph_consumer_prices")
+def consumer_prices():
+    with lock:
+        plot_data = plot_to_image(Visualiser.graph_consumer_prices())
+        if plot_data is not None:
+            return send_file(plot_data, mimetype="image/png")
+        else:
+            return abort(500)
+
 ### Returns all "Sectors" referenced in given data
 # Parameter "key" must be supplied
 # The key must be a key of the compiled_data.json dictionary
@@ -188,9 +197,17 @@ def user_data():
             case "Gender":
                 plotimg = plot_to_image(Visualiser.user_data_gender())
                 return send_file(plotimg, mimetype="image/png")
-        
+                
             case "Age":
                 plotimg = plot_to_image(Visualiser.user_data_age())
+                return send_file(plotimg, mimetype="image/png")
+            
+            case "JobSector":
+                plotimg = plot_to_image(Visualiser.user_data_sector())
+                return send_file(plotimg, mimetype="image/png")
+            
+            case "County":
+                plotimg = plot_to_image(Visualiser.user_data_counties())
                 return send_file(plotimg, mimetype="image/png")
         
             case "AnnualIncome":

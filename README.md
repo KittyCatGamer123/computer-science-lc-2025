@@ -5,7 +5,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ## Current Progress
 
-**Overall Progress:** 6 / 10
+**Overall Progress:** 8 / 10
 
 ### Legend
 - ✔️ Completed
@@ -15,29 +15,27 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Write-Up
 
-**Progress:** 1 / 4
+**Progress:** 3 / 4
 
-✔️ Investigation *(max. 400 words)*
+✔️ Investigation *(approx. 400 words)*
 - ✔️ Show evidence of own research, with existing solutions aligned with brief.
 - ✔️ Include sites used to find information.
 
-⌛ Plan and Design *(max. 400 words)*
+✔️ Plan and Design *(approx. 400 words)*
 - ✔️ Clear description of the design of your project
 - ✔️ Meeting basic and advanced requirements
 - ✔️ Technologies that you plan to use (Python, JS, VS Code)
-- ⭕ A detailed flowchart
+- ✔️ A detailed flowchart
 
 ▶ Create *(max. 1000 words)*
-- ▶ Include a progress log which gives an overview of the development process.
-- ✔️ Carry out testing during the development process using a test table.
-- ▶ One of the problems that you encountered and describe how you overcame the problem.
-- ▶ Clearly explain the algorithm that you designed for the analytics part of your project.
-- ⭕ Providing pseudocode of the algorithm and an explanation of the code.
+- ▶ A progress log covering the key milestones of the development process.
+- ✔️ Evidence of testing applied during development.
+- ▶ Explain a problem that was encountered in the development of the project and how it was overcome.
+- ⭕ An explanation of an algorithm that was designed that has been used for the analytics of the project.
 
-⭕ Evaluation *(max. 300 words)*
-- ⭕ Evaluate the final artefact in relation to the requirements set out in the brief.
-- ⭕ Suggest, with justification, how your artefact could be improved or iterated upon in the future.
-
+✔️ Evaluation *(approx. 300 words)*
+- ✔️ Evaluate the final artefact in relation to the requirements set out in the brief.
+- ✔️ Suggest, with justification, how your artefact could be improved or iterated upon in the future.
 
 ### Artefact
 
@@ -47,7 +45,11 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
 
 ✔️ Data analytics and visualisation 
-1. ✔️ Use Python to carry out analytics on data and to create at least two different basic visualisations (e.g., ✔️ bar chart,  ✔️ line graph, ✔️ pie chart) with each representing different key aspects of the dataset.
+1. ✔️ Use Python to carry out analytics on data and to create at least two different basic visualisations with each representing different key aspects of the dataset.
+- ✔️ Bar chart
+- ✔️ Line graph
+- ✔️ Pie chart
+
 2. ✔️ Ensure that each visualisation is clearly labelled with titles, axis labels, and legends where appropriate.
 3. ✔️ Use Python data structure(s) such as lists, tuples or dictionaries to manage the data you will be analysing. 
 

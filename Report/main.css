@@ -6,6 +6,7 @@ body {
     font-style: normal;
     margin-left: 160px;
     margin-right: 100px;
+    padding-bottom: 90px;
 }
 
 #TitleBar {
@@ -39,19 +40,6 @@ td {
     padding-right: 20px;
 }
 
-.testingTable, .testingTable td, .testingTable tr, .testingTable th  {
-    border: 1px solid #444;
-}
-
-.testingTable td, .testingTable tr, .testingTable th {
-    padding: 4px;
-}
-
-.testingTable td:nth-child(2),
-.testingTable td:nth-child(5) {
-    text-align: center;
-}
-
 .WordCounts td:nth-child(1) {
     text-align: left;
 }
@@ -69,36 +57,14 @@ a:link {
 a:visited {
     color: #c592ff;
 }
-
-.collapsible {
-    font-family: Tahoma, sans-serif;
-    background-color: #555;
-    color: white;
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 1em;
-}
-
-.collapsible li {
-    font-size: 0.5em;
-}
   
-.collapsibleActive, .collapsible:hover {
-    background-color: #555555;
-}
-  
-.CollapsibleContent {
+table {
     padding: 5px 18px;
     margin: 5px 0;
-    display: none;
     overflow: hidden;
     background-color: #1a1a1a;
     border: 1px solid #444;
-    width: fit-content;
+    width: 100%;
 }
 
 .createSection {

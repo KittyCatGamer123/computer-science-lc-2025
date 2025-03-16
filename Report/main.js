@@ -4,7 +4,6 @@
 */
 function Initialise() {
     WordCountSum();
-    CreateCollapsibles();
 }
 
 /*
@@ -24,20 +23,4 @@ function WordCountSum() {
     }
 
     document.getElementById("WordCountSum").innerHTML = `<b>${Sum.toString()}</b>`;
-}
-
-/*
-    Gets all elements of the "collapsible" class, and adds Event Listeners to them
-    so their content can be toggled on and off.
-    Does not return anything.
-*/
-function CreateCollapsibles() {
-    let Colls = document.getElementsByClassName("collapsible");
-    
-    for (let i = 0; i < Colls.length; i++) {
-        Colls[i].addEventListener("click", function() {
-            let content = this.nextElementSibling;
-            content.style.display = (content.style.display === "block") ? "none" : "block";
-        })
-    }
 }

@@ -1,7 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 
-#matplotlib.use('agg')
+matplotlib.use('agg')
 
 # Get the parent directory (Project)
 # Add the parent directory to sys.path

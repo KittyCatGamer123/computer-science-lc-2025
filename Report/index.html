@@ -128,6 +128,65 @@
             <li>Learnt how to use the "matplotlib" library in Python in order to take the extracted data and parse it into graphs.</li>
             <li>Utilised line graphs and pie charts to visualise data trends such as Average Weekly Earnings, Employment Levels, and Mortgage Interest.</li>
         </ul>
+
+        <p><b>Pseudocode of "visualiser.py" Script</b></p><br/>
+        <ol>
+            <span class="comment">▾ This part sets up global data to be used in the rest of the script.</span>
+            <li><span class="pink">Import</span> library "<span class="green">matplotlib</span>"</li>
+            <li><span class="pink">Import</span> custom library "<span class="green">utils</span>"</li>
+            <li>Set "<span class="blue">DATA</span>" to contents of "<span class="yellow">compiled_data.json</span>"</li>
+            <span class="comment">---</span>
+            <li><span class="function">Function for Employement Trend graph</span></li>
+            <li>&emsp;&emsp;Pass in: <span class="cyan">Job Sector, Min Year Range, Max Year Range</span></li>
+            <li>&emsp;&emsp;Validate sector type and convert years to integers.</li>
+            <li>&emsp;&emsp;Search for job data matching the given sector.</li>
+            <li>&emsp;&emsp;Filter data based on year range.</li>
+            <li>&emsp;&emsp;Loop through filtered data:</li>
+            <li>&emsp;&emsp;&emsp;&emsp;a. Extract years/quarters (x-axis) and values (y-axis)</li>
+            <li>&emsp;&emsp;&emsp;&emsp;b. Format the year labels (e.g. 2006 -> '06)</li>
+            <li>&emsp;&emsp;Plot the data with labeled axes</li>
+            <li>&emsp;&emsp;<span class="pink">Return</span> the graph</li>
+            <span class="comment">---</span>
+            <li><span class="function">Function for Weekly Earnings Trend graph</span></li>
+            <li>&emsp;&emsp;Pass in: <span class="cyan">Job Sector, Min Year Range, Max Year Range</span></li>
+            <li>&emsp;&emsp;Follows the same steps as Employment Trend:</li>
+            <li>&emsp;&emsp;&emsp;&emsp;a. Validate input types</li>
+            <li>&emsp;&emsp;&emsp;&emsp;b. Extract job data, filter by year range</li>
+            <li>&emsp;&emsp;&emsp;&emsp;c. Generate a line graph showing weekly earnings over time</li>
+            <li>&emsp;&emsp;<span class="pink">Return</span> this line graph</li>
+            <span class="comment">---</span>
+            <li><span class="function">Function for Occupations chart</span></li>
+            <li>&emsp;&emsp;Pass in: <span class="cyan">Year</span></li>
+            <li>&emsp;&emsp;Check if year is a valid integer - otherwise, return an error.</li>
+            <li>&emsp;&emsp;Extract occupation data for the given year.</li>
+            <li>&emsp;&emsp;If no data is found, return an error.</li>
+            <li>&emsp;&emsp;Loop through the data to collect:</li>
+            <li>&emsp;&emsp;&emsp;&emsp;a. Occupation titles (labels)</li>
+            <li>&emsp;&emsp;&emsp;&emsp;b. Occupation levels (values)</li>
+            <li>&emsp;&emsp;Create pie chart based on collected data.</li>
+            <li>&emsp;&emsp;<span class="pink">Return</span> pie chart.</li>
+            <span class="comment">---</span>
+            <li><span class="function">Functions for User Data analysis:</span></li>
+            <li>&emsp;&emsp;Gender function -> Bar chart for gender distribution</li>
+            <li>&emsp;&emsp;Age function -> Bar chart for age groups</li>
+            <li>&emsp;&emsp;Income Range function -> Bar chart for income ranges</li>
+            <li>&emsp;&emsp;Sectors function -> Pie chart for job sectors</li>
+            <span class="comment">--- Above functions all call from functions listed below:</span>
+            <li><span class="function">Function for Bar Chart (User Data):</span></li>
+            <li>&emsp;&emsp;Pass in: <span class="cyan">Dictionary Key in Data, Name for Bar Chart</span></li>
+            <li>&emsp;&emsp;Count frequency of user responses.</li>
+            <li>&emsp;&emsp;Create a bar chart with formatted labels.</li>
+            <li>&emsp;&emsp;<span class="pink">Return</span> bar chart.</li>
+            <span class="comment">---</span>
+            <li><span class="function">Function for Pie Chart (User Data):</span></li>
+            <li>&emsp;&emsp;Pass in: <span class="cyan">Dictionary Key in Data, Name for Pie Chart</span></li>
+            <li>&emsp;&emsp;Count frequency of user responses.</li>
+            <li>&emsp;&emsp;Create a pie chart with labeled percentages.</li>
+            <li>&emsp;&emsp;<span class="pink">Return</span> pie chart.</li>
+        </ol>
+        <p></p>
+
+        <br/>
         <p><b>Visualisation Testing</b></p><br/>
         <img src="assets/TestTable1.PNG">
         <p>Conclusion - This function will need to be adjusted to handle invalid type inputs.</p>
@@ -185,6 +244,10 @@
                 of undertaking my problem, specifically on the researching element of finding the correct<br/>
                 solution. I was thrilled to find it had worked.<br/>
             </p>
+        </ul>
+        <h4>Week Seven</h4>
+        <p><b>Data Analysis</b></p>
+        <ul>
         </ul>
     </div>
     <div id="Section_Eval">

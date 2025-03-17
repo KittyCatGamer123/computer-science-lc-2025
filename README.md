@@ -31,7 +31,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - ▶ A progress log covering the key milestones of the development process.
 - ✔️ Evidence of testing applied during development.
 - ✔️ Explain a problem that was encountered in the development of the project and how it was overcome.
-- ⭕ An explanation of an algorithm that was designed that has been used for the analytics of the project.
+- ✔️ An explanation of an algorithm that was designed that has been used for the analytics of the project.
 
 ✔️ Evaluation *(approx. 300 words)*
 - ✔️ Evaluate the final artefact in relation to the requirements set out in the brief.

@@ -67,6 +67,32 @@ table {
     width: 100%;
 }
 
+ol {
+    font-family: monospace;
+    font-size: 14px;
+    padding: 8px 18px;
+    margin: 5px 0;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    width: 100%;
+}
+
+ol li::marker {
+    color: #6e7681;
+}
+
+ol li {
+    margin-left: 25px
+}
+
+.green { color: #3ad17c; }
+.pink { color: #f76fca }
+.yellow { color: #d6aa1b }
+.cyan { color: #68e6ff }
+.blue { color: #3b95f1 }
+.function { color: #648eff }
+.comment { color: #6a8a36 }
+
 .createSection {
     margin-left: 40px;
 }

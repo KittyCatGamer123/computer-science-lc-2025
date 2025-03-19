@@ -5,7 +5,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ## Current Progress
 
-**Overall Progress:** 8 / 10
+**Overall Progress:** 10 / 10
 
 ### Legend
 - ✔️ Completed
@@ -27,8 +27,8 @@ Computer Science Project for 2025 for the Leaving Certificate.
 - ✔️ Technologies that you plan to use (Python, JS, VS Code)
 - ✔️ A detailed flowchart
 
-▶ Create *(max. 1000 words)*
-- ▶ A progress log covering the key milestones of the development process.
+✔️ Create *(max. 1000 words)*
+- ✔️ A progress log covering the key milestones of the development process.
 - ✔️ Evidence of testing applied during development.
 - ✔️ Explain a problem that was encountered in the development of the project and how it was overcome.
 - ✔️ An explanation of an algorithm that was designed that has been used for the analytics of the project.
@@ -39,7 +39,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Artefact
 
-**Progress:** 5 / 6
+**Progress:** 6 / 6
 
 ✔️ Collect and prepare data
 - ✔️ Use Python to extract, clean and store the data that you will need for your project into a suitable format.
@@ -68,4 +68,4 @@ Computer Science Project for 2025 for the Leaving Certificate.
 3. ✔️ The data should be validated and stored in a database or file. 
 4. ✔️ Some aspect of the collected data from all users should be summarised and displayed through the information system. 
 
-▶ Create a separate area that makes recommendations or helps inform decisions based on analysis of your chosen dataset.
+✔️ Create a separate area that makes recommendations or helps inform decisions based on analysis of your chosen dataset.

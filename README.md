@@ -1,5 +1,7 @@
 # LC-Computer Science Project 2025
-Computer Science Project for 2025 for the Leaving Certificate.
+Computer Science Project for 2025 for the Leaving Certificate. I recieved a H2 in the subject, although I believe I barely missed a H1 due to the theory exam.
+Anyone is welcome to read my code for inspiration and information - please do not copy it exactly though as you might lose marks for plagiarism.
+GitHub cannot support video files that are large so I apologise for not being able to give insights into this area that you might need help with.
 
 > For this project you are required to select a publicly available dataset from any reliable source that is relevant to your interests or an area that you feel is important for society. You will create an interactive information system to display analytics on your chosen dataset.
 
@@ -15,7 +17,7 @@ Computer Science Project for 2025 for the Leaving Certificate.
 
 ### Write-Up
 
-**Progress:** 3 / 4
+**Progress:** 4 / 4
 
 ✔️ Investigation *(approx. 400 words)*
 - ✔️ Show evidence of own research, with existing solutions aligned with brief.
